@@ -11,12 +11,5 @@ class FuzzyRule(object):
 		self.input_val_list = input_val_list
 		self.output_val = output_val
 		self.rule_string = rule
-
-	def get(self):	
-		pass
 	def reason(self, input_val_list):
 		pass
-
-
-
-		
