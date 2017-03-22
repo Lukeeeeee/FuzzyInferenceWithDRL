@@ -5,9 +5,14 @@ class Reasoner(object):
 	def __init__(self, input_val, frs):
 		self.input_val = input_val
 		self.frs = frs
+		self.antecedent = None
 
-	def set_input_val(self, input_val):
-		self.input_val = input_val
+	def set_intput_val(self, intput_val):
+		n = intput_val.count()
+		for i in range(n):
+			self.input_val.set_val(input_val[i].value)
 
 	def reason(self, input_val = None):
+		for input_variable in input_val:
+
 		pass
