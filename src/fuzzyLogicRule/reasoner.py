@@ -10,6 +10,4 @@ class Reasoner(object):
 		self.input_val = input_val
 
 	def reason(self, input_val = None):
-		if input_val is not None:
-			self.set_input_val(input_val)
 		pass
