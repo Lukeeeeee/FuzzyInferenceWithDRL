@@ -8,8 +8,3 @@ class GaussianMF(MembershipFunction):
     def calc(self, value):
         return 0.0 #Todo Gaussian mf
         pass
-
-
-
-if __name__ == "main":
-    ss = GaussianMF("s", 0, 1);

@@ -14,5 +14,4 @@ class Reasoner(object):
 
 	def reason(self, input_val = None):
 		for input_variable in input_val:
-
-		pass
+			pass

@@ -5,11 +5,12 @@ from membershipFunction import  MembershipFunction
 
 class TriangleMF(MembershipFunction):
 
-    def __init__(self, name, sl, sr, c):
-        MembershipFunction.__init__(name)
-        self.sl = sl
-        self.sr = sr
-        self.c = c
+    def __init__(self, name, sl, c, sr):
+        self.sl = float(sl)
+        self.sr = float(sr)
+        self.c = float(c)
+        #super(TriangleMF, self).__init__ (name)
+        MembershipFunction.__init__(self, name)
 
 
     def set_parameters(self, sl = None, sr = None, c = None):
@@ -20,16 +21,19 @@ class TriangleMF(MembershipFunction):
         if c is None:
             c = self.s
         if sl > sr or sl > c or c > sr:
-            print("Error when assign TriangleMf\n")
+            # Todo Error handle
             pass
         self.sl = sl
         self.sr = sr
         self.c = c
-    def get_value(self, value):
-        if value >= self.c:
+
+    def calc(self, value):
+        if value >= self.c and value <= self.c + self.sr:
             return (1.0 - (value - self.c) / self.sr)
-        elif value < self.c:
+        elif value < self.c and value >= self.c - self.sl:
             return (1.0 - (self.c - value) / self.sl)
         else:
             return 0.0
         pass
+
+
