@@ -1,6 +1,8 @@
 from __future__ import absolute_import
-import unittest
+
 import sys
+import unittest
+
 sys.path.append('/home/lukedong/PycharmProjects/GARIC/src/')
 from fuzzyLogicRule import *
 
@@ -15,6 +17,8 @@ class MyTestCase(unittest.TestCase):
         mf_list = [mf_l, mf_m, mf_r]
         temp = InputVariable("tempeature", [-20, 50], mf_list, value = 15)
         self.assertEqual(temp.linguistic_label_count, 3)
+        self.assertEqual(mf_l.name, "low")
+        self.assertEqual(temp.name, "tempeature")
         self.assertEqual(len(temp.mf), 3)
         self.assertEqual(len(temp.antecedent), 3)
         print(temp.antecedent)

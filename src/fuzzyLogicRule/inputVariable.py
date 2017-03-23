@@ -25,6 +25,7 @@ class InputVariable(object):
 	def get_value(self):
 		return self.value
 
+
 	def set_mf(self, new_mf):
 		self.mf = new_mf
 		self.set_value(self.get_value())
