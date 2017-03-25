@@ -1,7 +1,7 @@
-from inputVariable import InputVariable
-from leftTriangleMF import LeftTriangleMF
-from rightTriangleMF import RightTriangleMF
-from triangleMF import TriangleMF
+from membershipFunction import *
+from rule import *
+from src.fuzzyLogicRule.defuzzifier.defuzzifier import *
+from variable import *
 
 
 

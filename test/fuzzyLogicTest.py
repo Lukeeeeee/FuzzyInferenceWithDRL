@@ -4,12 +4,12 @@ import sys
 import unittest
 
 sys.path.append('/home/lukedong/PycharmProjects/GARIC/src/')
-from fuzzyLogicRule import *
+from src import *
 
 
 
 # For input variable and compute input an
-class MyTestCase(unittest.TestCase):
+class fuzzyLogicTest(unittest.TestCase):
     def test_fuzzy_input_init(self):
         mf_l = LeftTriangleMF("low", c = 0.0, sr = 20)
         mf_m = TriangleMF("middle", sl = 10, c = 20, sr = 10)

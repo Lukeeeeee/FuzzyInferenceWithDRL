@@ -1,6 +1,5 @@
 
-from membershipFunction import MembershipFunction
-
+from src.fuzzyLogicRule.membershipFunction.membershipFunction import MembershipFunction
 class RightTriangleMF(MembershipFunction):
     def __init__(self, name, c, sl):
         self.c = float(c)

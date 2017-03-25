@@ -1,6 +1,6 @@
 
 
-from membershipFunction import  MembershipFunction
+from src.fuzzyLogicRule.membershipFunction.membershipFunction import  MembershipFunction
 
 
 class TriangleMF(MembershipFunction):

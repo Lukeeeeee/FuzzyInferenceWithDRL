@@ -1,5 +1,5 @@
 
-from membershipFunction import MembershipFunction
+from src.fuzzyLogicRule.membershipFunction.membershipFunction import MembershipFunction
 
 class LeftTriangleMF(MembershipFunction):
     def __init__(self, name, c, sr):

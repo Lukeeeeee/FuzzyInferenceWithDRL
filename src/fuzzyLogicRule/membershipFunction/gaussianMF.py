@@ -1,4 +1,4 @@
-from membershipFunction import  MembershipFunction
+from src.fuzzyLogicRule.membershipFunction.membershipFunction import  MembershipFunction
 
 class GaussianMF(MembershipFunction):
     def __init__(self, name, mean, standerd_deviation):
