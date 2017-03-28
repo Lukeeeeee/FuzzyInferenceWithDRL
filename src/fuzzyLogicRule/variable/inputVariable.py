@@ -26,7 +26,7 @@ class InputVariable(object):
 	def get_value(self):
 		return self.input_value
 	def get_antecedent(self):
-		return  self.calc_antecedent(self)
+		return  self.calc_antecedent()
 
 	def set_mf(self, new_mf):
 		self.mf = new_mf

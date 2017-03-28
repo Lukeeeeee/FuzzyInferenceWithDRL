@@ -19,7 +19,7 @@ class TriangleMF(MembershipFunction):
         if sr is None:
             sr = self.sr
         if c is None:
-            c = self.s
+            c = self.c
         if sl > sr or sl > c or c > sr:
             # Todo Error handle
             pass

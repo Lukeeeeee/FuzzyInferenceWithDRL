@@ -42,6 +42,7 @@ class FuzzyRule(object):
 	@true_value.setter
 	def true_value(self, new_true_value):
 		# Todo Throw an error
+		self.true_value = new_true_value
 		pass
 
 	def _get_true_value(self):
