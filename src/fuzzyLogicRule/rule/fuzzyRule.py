@@ -40,21 +40,21 @@ class FuzzyRule(object):
 	def true_value(self):
 		return self.true_value
 	@true_value.setter
-	def true_value(self):
+	def true_value(self, new_true_value):
 		# Todo Throw an error
 		pass
 
 	def _get_true_value(self):
-		for input_val in self.section_input_val:
+		for input_val in self._section_input_val:
 			input_val.calc_antecedent(input_val)
-		if(self.min_operation is "min"):
-			self.true_value = self.min_op(self)
-		elif(self.min_operation is "softmin"):
-			self.true_value = self.softmin_op(self)
+		if(self._min_operation is "min"):
+			self.true_value = self._min_op()
+		elif(self._min_operation is "softmin"):
+			self.true_value = self._softmin_op()
 
 	def _min_op(self):
 		true_value = 0xffff # todo remove the magic number
-		for val in self.section_input_val:
+		for val in self._section_input_val:
 			if (val.name in self.input_dict):
 				true_value = min(self.true_value, val.antecednet[self.input_dict[val.name]])
 		return  true_value
@@ -63,7 +63,7 @@ class FuzzyRule(object):
 		self.true_value = 0xffff
 		true_value_numerator = 0.0
 		true_value_denominator = 0.0
-		for val in self.section_input_val:
+		for val in self._section_input_val:
 			if(val.name in self.input_dict):
 				true_value_numerator += 1.0 * val.antecednet[self.input_dict[val.name]] * math.exp(-self.input_dict[val.name])
 				true_value_denominator += 1.0 * math.exp(-self.input_dict[val.name])
