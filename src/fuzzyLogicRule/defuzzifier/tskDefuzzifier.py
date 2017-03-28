@@ -1,5 +1,5 @@
 
-from  src.fuzzyLogicRule.defuzzifier import Defuzzifier
+from src.fuzzyLogicRule.defuzzifier import Defuzzifier
 
 class TSKDefuzzifier(Defuzzifier):
     def __int__(self, weight):
