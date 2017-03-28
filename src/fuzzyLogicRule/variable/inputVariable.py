@@ -4,8 +4,8 @@ class InputVariable(object):
 	def __init__(self, name, range,
 				 mf, value = 0.0):
 		self.name = name
-		self.upper_range = range[1]
-		self.lower_range = range[0]
+		self._upper_range = range[1]
+		self._lower_range = range[0]
 		self.mf = mf
 		self.linguistic_label = []
 		for mf_i in self.mf:
@@ -16,7 +16,7 @@ class InputVariable(object):
 
 	# Todo Add property decorator
 	def set_value(self, new_val):
-		if(new_val > self.upper_range or new_val < self.lower_range):
+		if(new_val > self._upper_range or new_val < self._lower_range):
 			# Todo Error handle
 			return -1
 		self.input_value = new_val
@@ -24,7 +24,7 @@ class InputVariable(object):
 		return 1
 
 	def get_value(self):
-		return self.value
+		return self.input_value
 	def get_antecedent(self):
 		return  self.calc_antecedent(self)
 
