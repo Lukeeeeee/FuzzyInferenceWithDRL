@@ -14,6 +14,7 @@ class InputVariable(object):
 
 		self.set_value(value)
 
+	# Todo Add property decorator
 	def set_value(self, new_val):
 		if(new_val > self.upper_range or new_val < self.lower_range):
 			# Todo Error handle
