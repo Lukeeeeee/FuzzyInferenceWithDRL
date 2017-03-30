@@ -19,8 +19,7 @@ class FuzzyRule(object):
 		self._section = section
 		self._input_dict =  {} # Dict pair{variable name, linguistic label}
 		self._output_dict = {}
-		self._output_val = output_val
-
+		self.output_val = output_val
 
 	@property
 	def rule_str(self):
