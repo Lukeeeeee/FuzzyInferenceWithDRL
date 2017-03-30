@@ -1,8 +1,9 @@
 
 class Defuzzifier():
-    def __init__(self):
-        pass
+    def __init__(self, name):
+        self.name = name
 
-    def defuzzy(self, consequence):
+
+    def defuzzy(self, outputVal):
         pass
 

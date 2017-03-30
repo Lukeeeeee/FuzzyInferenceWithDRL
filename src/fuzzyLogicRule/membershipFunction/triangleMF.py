@@ -36,4 +36,9 @@ class TriangleMF(MembershipFunction):
             return 0.0
         pass
 
-
+    def inverse_calc(self, input_degree):
+        if input_degree > 1.0:
+            #todo error of degre value
+            return 0.0
+        else:
+            return (self.c + (1 - input_degree) * (self.sr - self.sl) / 2.0)

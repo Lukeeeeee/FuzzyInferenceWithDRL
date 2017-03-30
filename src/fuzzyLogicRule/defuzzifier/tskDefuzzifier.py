@@ -7,7 +7,7 @@ class TSKDefuzzifier(Defuzzifier):
         self.consequence = 0.0
         pass
 
-    def defuzzy(self, consequence):
+    def defuzzy(self, outputVar):
 
         pass
 

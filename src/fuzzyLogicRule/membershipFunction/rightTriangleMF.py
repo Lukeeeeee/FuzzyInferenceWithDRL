@@ -25,6 +25,12 @@ class RightTriangleMF(MembershipFunction):
             return (1.0 - (self.c - input_value) / self.sl )
         else:
             return 0.0
+    def inverse_calc(self, input_degree):
+        if (input_degree > 1.0):
+            #todo error value of degree
+            return 0.0
+        else:
+            return self.sl * (input_degree - 1) + self.c
 
 
 

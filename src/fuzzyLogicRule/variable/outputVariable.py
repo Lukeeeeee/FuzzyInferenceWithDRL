@@ -1,35 +1,24 @@
-'''
-Output variable:
-	name
-	value
-	range
-	linguistic_label
-	mf
-'''
+from src.fuzzyLogicRule.variable.variable import Variable
 
-
-class OutputVariable(object):
+class OutputVariable(Variable):
     """docstring for OutputVariable"""
 
-    def __init__(self, name, range, defuzzifier, mf,
-                 linguistic_label):
-        self._name = name
-        self._upper_range = range[1]
-        self._lower_range = range[0]
-        self._defuzzifier = defuzzifier
-        self._linguistic_label = linguistic_label
-        self._value = 0.0
-        self.mf = mf
-        self.consequence = 0.0
+    def __init__(self, name, mf, range, defuzzifier
+                 ):
+        super(OutputVariable, self).__init__(name, mf, range)
+        self.defuzzifier = defuzzifier
 
     @property
-    def consequence(self):
-        return self.consequence
-    @consequence.setter
-    def consequence(self, value):
-        self.consequence = value
-        self._value = self.compute_value()
-        pass
-    def compute_value(self):
-        
-        pass
+    def degree(self):
+        return self.degree
+
+    @degree.setter
+    def degree(self, new_value):
+        self.degree = new_value
+
+    @property
+    def value(self):
+        return self.value
+    @value.setter
+    def value(self, new_value):
+        self.value = new_value

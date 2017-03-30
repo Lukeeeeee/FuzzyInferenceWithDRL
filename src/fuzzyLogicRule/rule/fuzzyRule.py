@@ -47,7 +47,7 @@ class FuzzyRule(object):
 
 	def _get_true_value(self):
 		for input_val in self._section_input_val:
-			input_val.calc_antecedent(input_val)
+			input_val.calc_degree(input_val)
 		if(self._min_operation is "min"):
 			self.true_value = self._min_op()
 		elif(self._min_operation is "softmin"):
@@ -57,7 +57,7 @@ class FuzzyRule(object):
 		true_value = 0xffff # todo remove the magic number
 		for val in self._section_input_val:
 			if (val.name in self.input_dict):
-				true_value = min(self.true_value, val.antecednet[self.input_dict[val.name]])
+				true_value = min(self.true_value, val.degree[self.input_dict[val.name]])
 		return  true_value
 
 	def _softmin_op(self):
@@ -66,8 +66,8 @@ class FuzzyRule(object):
 		true_value_denominator = 0.0
 		for val in self._section_input_val:
 			if(val.name in self.input_dict):
-				true_value_numerator += 1.0 * val.antecednet[self.input_dict[val.name]] * math.exp(-self.input_dict[val.name])
-				true_value_denominator += 1.0 * math.exp(-self.input_dict[val.name])
+				true_value_numerator += 1.0 * val.degree[self.input_dict[val.name]] * math.exp(-val.degree[self.input_dict[val.name]])
+				true_value_denominator += 1.0 * math.exp(-val.degree[self.input_dict[val.name]])
 		return true_value_numerator / true_value_denominator
 
 
