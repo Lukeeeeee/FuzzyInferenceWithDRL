@@ -12,7 +12,6 @@ class FuzzyRuleSet():
 
 	def add_fuzzy_rule(self, fuzzy_rule):
 		self.rule_list.append(fuzzy_rule)
-	@property
 
 	def calc_value(self):
 		value_numerator = 0.0

@@ -1,7 +1,7 @@
 from __future__ import print_function
 
-import model
 import initializer
+from src.learner import model
 #import model
 
 if __name__ == '__main__':
