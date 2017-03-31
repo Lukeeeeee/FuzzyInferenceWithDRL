@@ -1,1 +1,3 @@
 from defuzzifier import Defuzzifier
+from LMOMDefuzzifier import LMOMDefuzzifier
+from tskDefuzzifier import TSKDefuzzifier

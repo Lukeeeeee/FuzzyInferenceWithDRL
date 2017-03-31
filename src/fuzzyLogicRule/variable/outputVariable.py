@@ -10,15 +10,9 @@ class OutputVariable(Variable):
 
     @property
     def degree(self):
-        return self.degree
+        return self._degree
 
     @degree.setter
     def degree(self, new_value):
-        self.degree = new_value
-
-    @property
-    def value(self):
-        return self.value
-    @value.setter
-    def value(self, new_value):
-        self.value = new_value
+        self._degree = new_value
+        self.value = self.defuzzifier.defuzzify(self._degree, self.mf)

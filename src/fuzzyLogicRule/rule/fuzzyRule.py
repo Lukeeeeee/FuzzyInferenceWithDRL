@@ -11,8 +11,8 @@ class FuzzyRule(object):
 				section,
 				min_operation = "softmin"
 				):
-		self.rule_str = rule_str
-		self.true_value = 0.0
+		self._rule_str = rule_str
+		self._true_value = 0.0
 
 		self._section_input_val = section_input_val
 		self._min_operation = min_operation

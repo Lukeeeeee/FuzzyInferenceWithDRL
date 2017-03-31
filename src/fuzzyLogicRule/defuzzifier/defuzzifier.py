@@ -1,9 +1,8 @@
 
-class Defuzzifier():
+class Defuzzifier(object):
     def __init__(self, name):
         self.name = name
 
-
-    def defuzzy(self, outputVal):
+    def defuzzify(self, degree, mf):
         pass
 
