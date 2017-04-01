@@ -34,14 +34,14 @@ def construct_rule():
     rule_str = [rule_str_1, rule_str_2, rule_str_3, rule_str_4]
     input = [temp_in_1, temp_in_2]
     output = [temp_out]
-    temp_rule_set = FuzzyRuleSet(input_val=input, output_val=output, rule_list=None, name="clothing", section=1)
-    temp_rule_1 = FuzzyRule(section_input_val=input, output_val=output, section=1, rule_str=rule_str_1,
+    temp_rule_set = FuzzyRuleSet(rule_list=None, name="clothing", section=1)
+    temp_rule_1 = FuzzyRule(input_var_list=input, output_var_list=output, section=1, rule_str=rule_str_1,
                             min_operation="min")
-    temp_rule_2 = FuzzyRule(section_input_val=input, output_val=output, section=1, rule_str=rule_str_2,
+    temp_rule_2 = FuzzyRule(input_var_list=input, output_var_list=output, section=1, rule_str=rule_str_2,
                             min_operation="min")
-    temp_rule_3 = FuzzyRule(section_input_val=input, output_val=output, section=1, rule_str=rule_str_3,
+    temp_rule_3 = FuzzyRule(input_var_list=input, output_var_list=output, section=1, rule_str=rule_str_3,
                             min_operation="min")
-    temp_rule_4 = FuzzyRule(section_input_val=input, output_val=output, section=1, rule_str=rule_str_4,
+    temp_rule_4 = FuzzyRule(input_var_list=input, output_var_list=output, section=1, rule_str=rule_str_4,
                             min_operation="min")
     temp_rule_set.add_fuzzy_rule(temp_rule_1)
     temp_rule_set.add_fuzzy_rule(temp_rule_2)
