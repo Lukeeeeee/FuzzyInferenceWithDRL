@@ -7,6 +7,7 @@ class OutputVariable(Variable):
                  ):
         super(OutputVariable, self).__init__(name, mf, range)
         self.defuzzifier = defuzzifier
+        self.value_dict = {}
 
     @property
     def degree(self):
@@ -15,4 +16,4 @@ class OutputVariable(Variable):
     @degree.setter
     def degree(self, new_value):
         self._degree = new_value
-        self.value = self.defuzzifier.defuzzify(self._degree, self.mf)
+        self.value_dict = self.defuzzifier.defuzzify(self._degree, self.mf)
