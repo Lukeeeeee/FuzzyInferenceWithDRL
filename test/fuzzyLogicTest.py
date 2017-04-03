@@ -34,7 +34,7 @@ def construct_rule():
     rule_str = [rule_str_1, rule_str_2, rule_str_3, rule_str_4]
     input = [temp_in_1, temp_in_2]
     output = [temp_out]
-    temp_rule_set = FuzzyRuleSet(rule_list=None, name="clothing", section=1)
+    temp_rule_set = FuzzyRuleSet(name="clothing number control", section=1, rule_list=[])
     temp_rule_1 = FuzzyRule(input_var_list=input, output_var_list=output, section=1, rule_str=rule_str_1,
                             min_operation="min")
     temp_rule_2 = FuzzyRule(input_var_list=input, output_var_list=output, section=1, rule_str=rule_str_2,
@@ -50,7 +50,7 @@ def construct_rule():
     return [temp_rule_1, temp_rule_2, temp_rule_3, temp_rule_4], temp_rule_set
 
 class fuzzyLogicRuleTest(unittest.TestCase):
-    def test_fuzzy_input_init(self):
+    def test_fuzzy_input(self):
         temp = construct_input("temperature")
         print("checking the basic input function")
         self.assertEqual(temp.name, "temperature")
@@ -62,6 +62,8 @@ class fuzzyLogicRuleTest(unittest.TestCase):
         temp.value = 30
         self.assertEqual(temp.degree, {"low": 0.0, "middle": 0.0, "high": 0.5})
         print(temp.degree)
+
+    def test_fuzzy_output(self):
         print("checking the basic output function")
         temp = construct_output("clothing")
         self.assertEqual(temp.name, "clothing")
@@ -70,15 +72,51 @@ class fuzzyLogicRuleTest(unittest.TestCase):
         temp.degree = {"low": 0.0, "middle": 1, "high": 0.0}
         self.assertEqual(temp.value, {"low": 0, "middle": 0, "high": 0})
         print(temp.value)
-        temp.degree = temp.degree = {"low": 2.0/7.0, "middle": 2.0/7.0, "high": 0.0}
+        temp.degree = temp.degree = {"low": 2.0 / 7.0, "middle": 2.0 / 7.0, "high": 0.0}
         print(temp.value)
 
     def test_fuzzy_rule_construct(self):
         print("checking the construction of rule set")
+        rule_str_1 = "IF temperature is low and humidity is middle THEN clothing is low"
+        rule_str_2 = "IF temperature is middle and humidity is middle THEN clothing is high"
+        rule_str_3 = "IF temperature is high and humidity is low THEN clothing is middle"
+        rule_str_4 = "IF temperature is low and humidity is high THEN clothing is low"
         rule_list, rule_set = construct_rule()
+        # check the rule
         self.assertEqual(len(rule_list), 4)
         self.assertEqual(rule_list[0]._input_dict, {"temperature":"low", "humidity":"middle"})
         self.assertEqual(rule_list[0]._output_dict, {"clothing":"low"})
+        self.assertEqual(rule_list[0]._section, 1)
+        self.assertEqual(rule_list[0]._min_operation, "min")
+        self.assertEqual(rule_list[0]._rule_str,rule_str_1)
+
+        self.assertEqual(rule_list[1]._input_dict, {"temperature": "middle", "humidity": "middle"})
+        self.assertEqual(rule_list[1]._output_dict, {"clothing": "high"})
+        self.assertEqual(rule_list[1]._section, 1)
+        self.assertEqual(rule_list[1]._min_operation, "min")
+        self.assertEqual(rule_list[1]._rule_str,rule_str_2)
+
+
+        self.assertEqual(rule_list[2]._input_dict, {"temperature": "high", "humidity": "low"})
+        self.assertEqual(rule_list[2]._output_dict, {"clothing": "middle"})
+        self.assertEqual(rule_list[2]._section, 1)
+        self.assertEqual(rule_list[2]._min_operation, "min")
+        self.assertEqual(rule_list[2]._rule_str,rule_str_3)
+
+
+        self.assertEqual(rule_list[3]._input_dict, {"temperature": "low", "humidity": "high"})
+        self.assertEqual(rule_list[3]._output_dict, {"clothing": "low"})
+        self.assertEqual(rule_list[3]._section, 1)
+        self.assertEqual(rule_list[3]._min_operation, "min")
+        self.assertEqual(rule_list[3]._rule_str,rule_str_4)
+
+        # check the rule set
+        self.assertEqual(rule_set.name, "clothing number control")
+        self.assertEqual(rule_set.section, 1)
+        self.assertEqual(rule_set.rule_list, rule_list)
+
+
+
 
 if __name__ == '__main__':
    unittest.main()

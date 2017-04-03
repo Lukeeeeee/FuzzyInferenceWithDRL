@@ -16,14 +16,14 @@ class FuzzyRule(object):
 		self._true_value = 0.0
 
 		self._input_var_list = input_var_list
+		self.output_val_list = output_var_list
 		self._min_operation = min_operation
 		self._section = section
 		self._input_dict =  {} # Dict pair{variable name, linguistic label}
 		self._output_dict = {}
-		self.output_val_list = output_var_list
 		self._rule_str = rule_str
 		if(self._rule_str is not None):
-			self.set_input_output_dict()
+			self.set_input_output_dict(self._rule_str)
 
 
 	@property
@@ -47,7 +47,6 @@ class FuzzyRule(object):
 	@input_var_list.setter
 	def input_var_list(self, new_input_var_list):
 		self._input_var_list = new_input_var_list
-		self.set_input_output_dict()
 
 	def set_input_var_value(self, new_input_var_value_dict):
 		for input_var in self._input_var_list:
@@ -56,11 +55,9 @@ class FuzzyRule(object):
 		self.set_output_var_degree()
 
 	def set_input_output_dict(self, rule_str = None):
-		if rule_str is None:
-			pass
-		else:
-			ruleParser = RuleParser()
-			self._input_dict, self._output_dict = ruleParser.parse_if_then_rule(self._rule_str)
+		ruleParser = RuleParser()
+		self._rule_str = rule_str
+		self._input_dict, self._output_dict = ruleParser.parse_if_then_rule(rule_str)
 
 	def _get_true_value(self):
 		for input_val in self._input_var_list:

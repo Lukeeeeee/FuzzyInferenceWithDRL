@@ -3,7 +3,7 @@
 
 class FuzzyRuleSet():
 	
-	def __init__(self, name, section, rule_list = None,):
+	def __init__(self, name, section, rule_list = [],):
 		self.name = name
 		self.section = section
 		self._input_var_value_dict = {} # pair name : value
