@@ -49,6 +49,14 @@ def construct_rule():
     temp_rule_set.add_fuzzy_rule(temp_rule_4)
     return [temp_rule_1, temp_rule_2, temp_rule_3, temp_rule_4], temp_rule_set
 
+
+def construct_controller(rule_set = None):
+    controller = Controller(name="clothing controller")
+    if rule_set is not None:
+        controller.add_rule_section(rule_set)
+    return controller
+
+
 class fuzzyLogicRuleTest(unittest.TestCase):
     def test_fuzzy_input(self):
         temp = construct_input("temperature")
@@ -63,6 +71,8 @@ class fuzzyLogicRuleTest(unittest.TestCase):
         self.assertEqual(temp.degree, {"low": 0.0, "middle": 0.0, "high": 0.5})
         print(temp.degree)
 
+        print("test of basci input function finished")
+
     def test_fuzzy_output(self):
         print("checking the basic output function")
         temp = construct_output("clothing")
@@ -74,6 +84,8 @@ class fuzzyLogicRuleTest(unittest.TestCase):
         print(temp.value)
         temp.degree = temp.degree = {"low": 2.0 / 7.0, "middle": 2.0 / 7.0, "high": 0.0}
         print(temp.value)
+
+        print("Test of basic output function finished")
 
     def test_fuzzy_rule_construct(self):
         print("checking the construction of rule set")
@@ -115,8 +127,64 @@ class fuzzyLogicRuleTest(unittest.TestCase):
         self.assertEqual(rule_set.section, 1)
         self.assertEqual(rule_set.rule_list, rule_list)
 
+        print("Test of fuzzy rule and set finished")
+    def test_fuzzy_rule_controller_construct(self):
+        print("Checking the construction of controller")
+        controller = construct_controller(rule_set = None)
+        self.assertEqual(controller.name, "clothing controller")
+        _, rule_set = construct_rule()
+        controller.add_rule_section(rule_set)
+        self.assertEqual(controller.rule_section_set[rule_set.name], rule_set)
+        print("Test of controller finished")
+
+    def test_fuzzy_rule_reason(self):
+        rule_list, rule_set = construct_rule()
+        rule = rule_list[3]
+        input_val_dict = {"temperature": 15, "humidity": 30}
+        rule.set_input_var_value(input_val_dict)
+        self.assertEqual(rule.true_value, 0.25)
+        self.assertEqual(rule.output_var_list[0].value, {'high': 0.0, 'middle': 0.0, 'low': -1.25})
+        self.assertEqual(rule.output_var_value, {'high': 0.0, 'middle': 0.0, 'low': -1.25})
+
+        #print(rule.output_var_list[0].value)
+
+        input_val_dict = {"temperature": 30, "humidity": 15}
+        rule.set_input_var_value(input_val_dict)
+        self.assertEqual(rule.true_value, 0.0)
+        self.assertEqual(rule.output_var_list[0].value, {'high': 0.0, 'middle': 0.0, 'low': 0.0})
+        self.assertEqual(rule.output_var_value, {'high': 0.0, 'middle': 0.0, 'low': 0.0})
 
 
+    def test_fuzzy_rule_set_reason(self):
+        print("Checking the reasoning of single rule set")
+        _, rule_set = construct_rule()
+        input_val_dict = {"temperature": 15, "humidity": 30}
+        rule_set.input_var_value_dict = input_val_dict
+        self.assertEqual(rule_set.rule_set_output_value, -1.25)
+        print(rule_set.rule_set_output_value)
+
+        input_val_dict = {"temperature": 30, "humidity": 15}
+        rule_set.input_var_value_dict = input_val_dict
+        self.assertEqual(rule_set.rule_set_output_value, 0.0)
+        print(rule_set.rule_set_output_value)
+        print("Test of single rule set finished")
+
+    def test_fuzzy_rule_controller_reason(self):
+        print("Checking the reasoning of controller")
+        _, rule_set = construct_rule()
+        controller = construct_controller(rule_set)
+
+        input_val_dict = {"temperature": 15, "humidity": 30}
+        controller.input_value_dict = input_val_dict
+        self.assertEqual(controller.output_value_dict, {"clothing": -1.25})
+        print(controller.output_value_dict)
+
+        input_val_dict = {"temperature": 30, "humidity": 15}
+        controller.input_value_dict = input_val_dict
+        self.assertEqual(controller.output_value_dict, {"clothing": 0.0})
+        print(controller.output_value_dict)
+
+        print("Test of controller reasoning finished")
 
 if __name__ == '__main__':
    unittest.main()
