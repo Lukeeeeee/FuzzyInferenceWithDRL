@@ -1,0 +1,2 @@
+class Reward(object):
+    pass
