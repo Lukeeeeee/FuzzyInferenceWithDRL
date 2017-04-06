@@ -55,6 +55,7 @@ def construct_controller(rule_set = None):
     if rule_set is not None:
         controller.add_rule_section(rule_set)
     return controller
+    pass
 
 
 class fuzzyLogicRuleTest(unittest.TestCase):
