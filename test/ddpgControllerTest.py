@@ -1,5 +1,7 @@
-from src import *
 import gc
+
+from src import *
+
 gc.enable()
 
 ENV_NAME = 'InvertedPendulum-v1'
@@ -7,14 +9,14 @@ EPISODES = 100000
 TEST = 10
 
 def main():
-    env = Environment()
+    env = Environment(action=None, reward=None, state=None)
     agent = DDPGController(env)
 
     for episode in range(EPISODES):
         state = env.reset()
         for step in range(env.timestep_limit):
             action = agent.noise_action(state)
-            next_state, reward, done, done = env.step(action)
+            next_state, reward, done = env.step(action)
             agent.perceive(state, action, reward, next_state, done)
             state = next_state
             if done:

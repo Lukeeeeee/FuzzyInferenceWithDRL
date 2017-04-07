@@ -6,13 +6,11 @@ class Initializer(object):
         self.fuzzyLogicController = ddpgController
         pass
 
-
     def generate_state_sample(self):
         pass
 
-
-    def generate_trainning_sample(self):
+    def generate_training_sample(self):
         pass
 
-    def train_ddpg(self):
+    def train_DDPG(self):
         pass
