@@ -1,7 +1,6 @@
-import tensorflow as tf
-from tensorflow.contrib.layers.python.layers import batch_norm as batch_norm
-import numpy as np
 import math
+
+import tensorflow as tf
 
 # Hyper Parameters
 LAYER1_SIZE = 400
@@ -9,7 +8,7 @@ LAYER2_SIZE = 300
 LEARNING_RATE = 1e-4
 TAU = 0.001
 BATCH_SIZE = 64
-
+L2 = 0.01
 
 class ActorNetwork(object):
     """docstring for ActorNetwork"""
@@ -38,6 +37,12 @@ class ActorNetwork(object):
         self.q_gradient_input = tf.placeholder("float", [None, self.action_dim])
         self.parameters_gradients = tf.gradients(self.action_output, self.net, -self.q_gradient_input)
         self.optimizer = tf.train.AdamOptimizer(LEARNING_RATE).apply_gradients(zip(self.parameters_gradients, self.net))
+
+        # Create train method for initialization
+        self.y_input = tf.placeholder("float", [None, self.action_dim])
+        weight_decay = tf.add_n([L2 * tf.nn.l2_loss(var) for var in self.net])
+        self.cost = tf.reduce_mean(tf.square(self.y_input - self.action_output)) + weight_decay
+        self.initial_optimizer = tf.train.AdadeltaOptimizer(LEARNING_RATE).minimize(self.cost)
 
     def create_network(self, state_dim, action_dim):
         layer1_size = LAYER1_SIZE
@@ -93,6 +98,13 @@ class ActorNetwork(object):
     def train(self, q_gradient_batch, state_batch):
         self.sess.run(self.optimizer, feed_dict={
             self.q_gradient_input: q_gradient_batch,
+            self.state_input: state_batch,
+            self.is_training: True
+        })
+
+    def initial_train(self, action_label_batch, state_batch):
+        self.sess.run(self.initial_optimizer, feed_dict={
+            self.y_input: action_label_batch,
             self.state_input: state_batch,
             self.is_training: True
         })
