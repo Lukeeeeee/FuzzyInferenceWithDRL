@@ -9,7 +9,7 @@ EPISODES = 100000
 TEST = 10
 
 def main():
-    env = Environment(action=None, reward=None, state=None)
+    env = Environment(name=ENV_NAME)
     agent = DDPGController(env)
 
     for episode in range(EPISODES):

@@ -1,3 +1,4 @@
+import random
 from collections import deque
 
 
@@ -7,11 +8,22 @@ class DDPGInitializer(object):
         self.fuzzyLogicController = ddpgController
         self.fuzzyLogicValuer = fuzzLogicValuer
         self.mini_batch_size = mini_batch_size
-        pass
 
     def generate_state_done_mini_batch(self, mini_batch_size):
-        return [{}, {}], []
-        pass
+        state_set = self.ddpgController.environment.state_set
+        state_dim = self.ddpgController.environment.state_dim
+        random_state_list = []
+        random_done_list = []
+        for i in range(mini_batch_size):
+            random_state_sample = {}
+            for state_i in state_set:
+                random_state_sample[state_i.name] = random.uniform(0.0, 1.0)
+            if (self.ddpgController.environment.is_done(random_state_sample)):
+                random_done_list.append(1)
+            else:
+                random_done_list.append(0)
+            random_done_list.append(random_state_sample)
+        return random_done_list, random_done_list
 
     def generate_training_sample_mini_batch(self, mini_batch_size):
         mini_state_batch, done_list = self.generate_state_done_mini_batch(mini_batch_size)
@@ -46,7 +58,6 @@ class DDPGInitializer(object):
                       action_label_list[i],
                       value_label_list[i],
                       done_list[i]
-                      # TODO ADD DONE BATCH
                       )
             mini_batch.append(sample)
         pass

@@ -1,4 +1,4 @@
 class Reward(object):
-    lower_range = {}
-    upper_range = {}
-    pass
+    def __init__(self, range):
+        self.upper_range = range[1]
+        self.lower_range = range[0]
