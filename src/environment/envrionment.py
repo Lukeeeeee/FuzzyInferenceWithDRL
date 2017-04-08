@@ -1,5 +1,3 @@
-import socket
-import json
 import google.protobuf
 
 
@@ -9,6 +7,7 @@ class Environment(object):
         self.action = action
         self.reward = reward
         self.state = state
+        # todo finish env
 
         pass
     def reset(self):
@@ -16,7 +15,6 @@ class Environment(object):
         pass
 
     def step(self, action):
-
         pass
 
 if __name__ == '__main__':
