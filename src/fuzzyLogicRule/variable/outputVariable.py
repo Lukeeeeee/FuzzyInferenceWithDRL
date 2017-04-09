@@ -1,5 +1,6 @@
 from src.fuzzyLogicRule.variable.variable import Variable
 
+
 class OutputVariable(Variable):
     """docstring for OutputVariable"""
 

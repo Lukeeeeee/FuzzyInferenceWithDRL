@@ -3,7 +3,7 @@ from __future__ import absolute_import
 import sys
 import unittest
 
-sys.path.append('/home/lukedong/PycharmProjects/GARIC/src/')
+sys.path.append('/home/zhongwang/Desktop/GARIC/src/')
 from src import *
 
 def construct_input(name):

@@ -23,7 +23,7 @@ class FuzzyRule(object):
 		self._output_dict = {}
 		self._rule_str = rule_str
 		if(self._rule_str is not None):
-			self.set_input_output_dict(self._rule_str)
+			self.set_input_output_dict(self._rule_str) # set map
 		self.output_var_value = {}
 
 
@@ -70,7 +70,7 @@ class FuzzyRule(object):
 		for out_var in self.output_var_list:
 			new_degree = out_var.degree
 			new_degree[self._output_dict[out_var.name]] = self.true_value
-			out_var.degree = new_degree
+			out_var.degree = new_degree #setter
 			self.output_var_value = out_var.value
 
 	def _min_op(self):
@@ -78,6 +78,10 @@ class FuzzyRule(object):
 		for val in self._input_var_list:
 			if (val.name in self._input_dict):
 				true_value = min(true_value, val.degree[self._input_dict[val.name]])
+		# val=inputvar(temperature)
+		# rulestr = if temperature is low ...
+		# val.name="temperature"
+		# self.self._input_dict[val.name]=low
 		return true_value
 
 	def _softmin_op(self):
