@@ -1,9 +1,10 @@
 from __future__ import absolute_import
 
+import os
 import sys
 import unittest
 
-sys.path.append('/home/zhongwang/Desktop/GARIC/src/')
+sys.path.append(os.getcwd() + '/src/')
 from src import *
 
 def construct_input(name):
