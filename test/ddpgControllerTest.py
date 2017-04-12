@@ -1,5 +1,8 @@
 import gc
-
+import os
+import sys
+sys.path.append(os.getcwd() + '/src/')
+from src import *
 from src import *
 
 gc.enable()

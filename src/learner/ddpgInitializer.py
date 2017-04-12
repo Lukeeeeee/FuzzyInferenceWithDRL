@@ -3,10 +3,14 @@ from collections import deque
 
 
 class DDPGInitializer(object):
-    def __int__(self, ddpgController, fuzzyLogicController, fuzzLogicValuer, mini_batch_size):
-        self.ddpgController = ddpgController
-        self.fuzzyLogicController = ddpgController
-        self.fuzzyLogicValuer = fuzzLogicValuer
+    def __init__(self,
+                ddpg_controller,
+                fuzzy_logic_controller,
+                fuzzy_logic_valuer,
+                mini_batch_size):
+        self.ddpgController = ddpg_controller
+        self.fuzzyLogicController = fuzzy_logic_controller
+        self.fuzzyLogicValuer = fuzzy_logic_valuer
         self.mini_batch_size = mini_batch_size
 
     def generate_state_done_mini_batch(self, mini_batch_size):
@@ -65,3 +69,6 @@ class DDPGInitializer(object):
     def train_DDPG(self):
         mini_batch = self.generate_training_sample_mini_batch(self.mini_batch_size)
         self.ddpgController.initial_train(mini_batch=mini_batch)
+
+if __name__ == '__main__':
+    ddpgInitializer = DDPGInitializer()

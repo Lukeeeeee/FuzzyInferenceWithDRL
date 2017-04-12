@@ -132,3 +132,8 @@ class DDPGController(object):
         # Update the target networks
         self.actor_network.update_target()
         self.critic_network.update_target()
+
+if __name__ == '__main__':
+    from src.environment import *
+    env = Environment(name = "test", action_dim=10, state_dim=10)
+    ddpg = DDPGController(env)

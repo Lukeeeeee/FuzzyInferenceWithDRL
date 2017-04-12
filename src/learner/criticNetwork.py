@@ -33,7 +33,7 @@ class CriticNetwork(object):
         self.create_training_method()
 
         # initialization
-        self.sess.run(tf.initialize_all_variables())
+        self.sess.run(tf.global_variables_initializer())
 
         self.update_target()
 
