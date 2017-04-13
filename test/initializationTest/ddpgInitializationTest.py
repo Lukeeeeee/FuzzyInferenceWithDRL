@@ -1,8 +1,8 @@
 from __future__ import print_function
-import unittest
+
+import json
 import os
 import sys
-import json
 
 try:
     import cPickle as pickle
@@ -10,7 +10,6 @@ except ImportError:
     import pickle
 
 sys.path.append(os.getcwd() + '/src/')
-from src import *
 from test.commonTest import *
 
 
@@ -70,8 +69,8 @@ class ddpgInitializaionTest(object):
         self.valuer.add_rule_section(temp_rule_set)
         return self.valuer
 
-    def save_to_json(self):
-        json.dump(self, default=lambda obj: obj.__dict__)
+    def save_to_json(self, fp):
+        json.dump(self, fp, default=lambda obj: obj.__dict__)
         pass
 
 if __name__ == '__main__':
@@ -90,7 +89,7 @@ if __name__ == '__main__':
                                       mini_batch_size=100)
 
     #save something useful
-    log_file = open("../../log/test.txt", "w")
+    log_file = open("../../log/json/test.txt", "w")
 
     #print(pickle.dumps(ddpgInitializaionTest))
     #print(pickle.dumps(fuzzy_controller))
