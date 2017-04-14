@@ -117,7 +117,7 @@ class ActorNetwork(object):
 
     def action(self, state):
         return self.sess.run(self.action_output, feed_dict={
-            self.state_input: [state],
+            self.state_input: state,
             self.is_training: False
         })[0]
 

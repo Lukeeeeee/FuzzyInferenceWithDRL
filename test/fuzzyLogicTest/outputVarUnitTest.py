@@ -5,7 +5,6 @@ import unittest
 from collections import namedtuple
 
 sys.path.append('/home/zhongwang/Desktop/GARIC/src/')
-from src import *
 
 TriangleMFPara = namedtuple("TriangleMFPara", ['name', 'sl', 'c', 'sr'])
 

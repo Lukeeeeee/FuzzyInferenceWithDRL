@@ -3,22 +3,23 @@ import requests
 
 
 class Environment(object):
-    def __init__(self, name, state_dim=100, action_dim=100):
+    def __init__(self, name, state_set, action_set):
         self.timestep_limit = 1000
         self.name = name
-        self.set_action_set(action_dim)
-        self.set_reward()
-        self.set_state_set(state_dim)
+        self.state_dim = len(state_set)
+        self.state_set = state_set
+        self.action_dim = len(action_set)
+        self.action_set = action_set
 
-    def set_action_set(self, action_dim):
-        self.action_dim = action_dim
+    def set_action_set(self, action_set):
+        self.action_set = action_set
         pass
 
     def set_reward(self):
         pass
 
-    def set_state_set(self, state_dim):
-        self.state_dim = state_dim
+    def set_state_set(self, state_set):
+        self.state_set = state_set
         pass
 
     def reset(self):
