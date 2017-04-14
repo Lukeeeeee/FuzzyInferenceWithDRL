@@ -102,7 +102,8 @@ if __name__ == '__main__':
                                       fuzzy_logic_controller=fuzzy_controller,
                                       fuzzy_logic_valuer=fuzzy_valuer,
                                       mini_batch_size=100)
-    ddpgInitializer.train_DDPG()
+    ddpgInitializer.train_DDPG(1000)
+
     #save something useful
     log_file = open("../../log/json/test.txt", "w")
 

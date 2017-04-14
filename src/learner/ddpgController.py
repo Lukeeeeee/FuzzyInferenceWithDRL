@@ -15,7 +15,7 @@ from replayBuffer import ReplayBuffer
 
 REPLAY_BUFFER_SIZE = 1000000
 REPLAY_START_SIZE = 10000
-BATCH_SIZE = 64
+BATCH_SIZE = 100  # todo erase this one
 GAMMA = 0.99
 
 
@@ -120,18 +120,19 @@ class DDPGController(object):
             y_batch.append(value_label_batch[i])
         y_batch = np.resize(y_batch, [BATCH_SIZE, 1])
         # Update critic by minimizing the loss L
-        self.critic_network.train(y_batch, state_batch, action_label_batch)
+        critic_cost = self.critic_network.train(y_batch, state_batch, action_label_batch)
 
         # Update the actor policy using the sampled gradient:
         # action_batch_for_gradients = self.actor_network.actions(state_batch)
         # q_gradient_batch = self.critic_network.gradients(state_batch, action_batch_for_gradients)
 
         # self.actor_network.train(q_gradient_batch, state_batch)
-        self.actor_network.initial_train(action_label_batch=action_label_batch, state_batch=state_batch)
+        action_cost = self.actor_network.initial_train(action_label_batch=action_label_batch, state_batch=state_batch)
 
         # Update the target networks
         self.actor_network.update_target()
         self.critic_network.update_target()
+        return critic_cost, action_cost
 
 if __name__ == '__main__':
     from src.environment import *
