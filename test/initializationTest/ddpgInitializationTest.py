@@ -1,6 +1,20 @@
+"""
+DDPG initialization test
+
+Usage:
+    ddpginitializationTest.py epoch <epoch> mini_batch <mini_batch>
+    
+Options:
+    -h --help
+
+"""
+
+
 from __future__ import print_function
 
 import json
+
+from docopt import docopt
 
 from test.commonTest import *
 
@@ -87,6 +101,10 @@ class ddpgInitializaionTest(object):
         pass
 
 if __name__ == '__main__':
+    arguments = docopt(__doc__)
+    epoch = int(arguments["<epoch>"])
+    mini_batch_size = int(arguments["<mini_batch>"])
+
     testInitializer = ddpgInitializaionTest(state_dim=100,
                                             action_dim=10)
     env = Environment(name="InitialTest",
@@ -101,8 +119,8 @@ if __name__ == '__main__':
     ddpgInitializer = DDPGInitializer(ddpg_controller=ddpgController,
                                       fuzzy_logic_controller=fuzzy_controller,
                                       fuzzy_logic_valuer=fuzzy_valuer,
-                                      mini_batch_size=100)
-    ddpgInitializer.train_DDPG(1000)
+                                      mini_batch_size=mini_batch_size)
+    ddpgInitializer.train_DDPG(epoch=epoch)
 
     #save something useful
     log_file = open("../../log/json/test.txt", "w")
