@@ -4,7 +4,7 @@ import requests
 
 class Environment(object):
     def __init__(self, name, state_set, action_set):
-        self.timestep_limit = 1000
+        self.time_step_limit = 1000
         self.name = name
         self.state_dim = len(state_set)
         self.state_set = state_set
@@ -24,10 +24,12 @@ class Environment(object):
 
     def reset(self):
         return 0.0
-        pass
 
     def step(self, action):  # return next_state, reward, done
-        pass
+        next_state = 0.0
+        reward = 0.0
+        done = False
+        return next_state, reward, done
 
     def is_done(self, state):
         return False

@@ -135,6 +135,6 @@ class DDPGController(object):
         return critic_cost, action_cost
 
 if __name__ == '__main__':
-    from src.environment import *
-    env = Environment(name = "test", action_dim=10, state_dim=10)
-    ddpg = DDPGController(env)
+    pass
+    # env = Environment(name = "test", action_dim=10, state_dim=10)
+    # ddpg = DDPGController(env)
