@@ -96,18 +96,20 @@ class ActorNetwork(object):
         self.sess.run(self.target_update)
 
     def train(self, q_gradient_batch, state_batch):
-        self.sess.run(self.optimizer, feed_dict={
+        _, cost = self.sess.run([self.optimizer, self.cost], feed_dict={
             self.q_gradient_input: q_gradient_batch,
             self.state_input: state_batch,
             self.is_training: True
         })
+        return cost
 
     def initial_train(self, action_label_batch, state_batch):
-        self.sess.run(self.initial_optimizer, feed_dict={
+        _, cost = self.sess.run([self.initial_optimizer, self.cost], feed_dict={
             self.y_input: action_label_batch,
             self.state_input: state_batch,
             self.is_training: True
         })
+        return cost
 
     def actions(self, state_batch):
         return self.sess.run(self.action_output, feed_dict={
@@ -117,7 +119,7 @@ class ActorNetwork(object):
 
     def action(self, state):
         return self.sess.run(self.action_output, feed_dict={
-            self.state_input: [state],
+            self.state_input: state,
             self.is_training: False
         })[0]
 

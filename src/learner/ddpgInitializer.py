@@ -26,8 +26,8 @@ class DDPGInitializer(object):
                 random_done_list.append(1)
             else:
                 random_done_list.append(0)
-            random_done_list.append(random_state_sample)
-        return random_done_list, random_done_list
+            random_state_list.append(random_state_sample)
+        return random_state_list, random_done_list
 
     def generate_training_sample_mini_batch(self, mini_batch_size):
         mini_state_batch, done_list = self.generate_state_done_mini_batch(mini_batch_size)
@@ -35,7 +35,7 @@ class DDPGInitializer(object):
         for input_state_dict in mini_state_batch:
             input_state_dict.items().sort()
             input_state_list.append(input_state_dict.values())
-        output_action_list = self.ddpgController.actor_network.action(input_state_list)
+        output_action_list = self.ddpgController.actor_network.actions(input_state_list)
 
         action_label_list = []
         value_label_list = []
@@ -64,11 +64,14 @@ class DDPGInitializer(object):
                       done_list[i]
                       )
             mini_batch.append(sample)
-        pass
+        return mini_batch
 
-    def train_DDPG(self):
-        mini_batch = self.generate_training_sample_mini_batch(self.mini_batch_size)
-        self.ddpgController.initial_train(mini_batch=mini_batch)
+    def train_DDPG(self, epoch):
+        for i in range(epoch):
+            mini_batch = self.generate_training_sample_mini_batch(self.mini_batch_size)
+            critic_cost, actor_cost = self.ddpgController.initial_train(mini_batch=mini_batch)
+            print("Epoch = %d Critic Cost = %.5f Actor Cost = %.5f" % (i, critic_cost, actor_cost))
 
 if __name__ == '__main__':
-    ddpgInitializer = DDPGInitializer()
+    # ddpgInitializer = DDPGInitializer()
+    pass

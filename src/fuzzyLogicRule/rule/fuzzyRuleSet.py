@@ -64,7 +64,7 @@ class FuzzyRuleSet(object):
 			output_var_value = rule.output_var_value[rule._output_dict[output_var.name]]
 			value_numerator += rule.true_value * output_var_value
 			value_denominator += rule.true_value
-		if value_denominator is 0.0:
+		if value_denominator <= 0.000001:
 			return 0.0
 		else:
 			return value_numerator / value_denominator
