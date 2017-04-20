@@ -12,9 +12,9 @@ class StarCraftEnvironment(Environment):
     def connect(self):
         self.cl = tf.Client()
         self.cl.connect(self.args.hostname, self.args.port)
-        self.state = self.cl.init(micro_battles=True)
 
     def init(self):
+        self.state = self.cl.init(micro_battles=True)
         self.cl.send([
             [tcc.set_speed, 0],
             [tcc.set_gui, 1],
