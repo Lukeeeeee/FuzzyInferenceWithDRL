@@ -1,6 +1,6 @@
+import argparse
+import torchcraft as tc
 import torchcraft.Constants as tcc
-from test.starCraftTest.TorchCraft import *
-
 from src.environment.envrionment import Environment
 
 
