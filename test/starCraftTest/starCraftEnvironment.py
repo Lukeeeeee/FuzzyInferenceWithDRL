@@ -1,21 +1,40 @@
-import os
-import sys
-
-from src.environment.envrionment import Environment
+import torchcraft.Constants as tcc
 from test.starCraftTest.TorchCraft import *
 
+from src.environment.envrionment import Environment
 
 
 class StarCraftEnvironment(Environment):
-    def __init__(self, name, state_set, action_set):
+    def __init__(self, name, state_set, action_set, args):
         super(StarCraftEnvironment, self).__init__(name, state_set, action_set)
+        self.args = args
+
+    def connect(self):
+        self.cl = tf.Client()
+        self.cl.connect(self.args.hostname, self.args.port)
+        self.state = self.cl.init(micro_battles=True)
+
+    def init(self):
+        self.cl.send([
+            [tcc.set_speed, 0],
+            [tcc.set_gui, 1],
+            [tcc.set_cmd_optim, 1],
+        ])
 
     def reset(self):
-        pass
+        self.connect()
+        self.init()
 
     def step(self, action):
-
-        pass
+        self.cl.send(action)
+        state = self.cl.recv()
+        reward = 0.0
+        if state.battle_just_ended:
+            if state.battle_won:
+                reward = +1.0
+            else:
+                reward = -1.0
+        return state, reward
 
     def is_done(self, state):
         pass
