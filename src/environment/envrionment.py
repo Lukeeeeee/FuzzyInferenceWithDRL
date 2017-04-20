@@ -15,7 +15,8 @@ class Environment(object):
         self.action_set = action_set
         pass
 
-    def set_reward(self):
+    def set_reward(self, reward):
+        self.reward = reward
         pass
 
     def set_state_set(self, state_set):
