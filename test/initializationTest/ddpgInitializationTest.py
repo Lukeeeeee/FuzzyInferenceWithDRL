@@ -80,18 +80,19 @@ class DDPGInitializaionTest(object):
 
     def generate_fuzzy_logic_controller(self, input_dim=100, output_dim=10, rule_num=100):
         self.section_num = output_dim
-        self.controller = Controller(name = "ControllerTest")
+
+        self.controller = Controller(name="ControllerTest")
         section_num = len(self.section_list)
         for i in range(section_num):
             rule_list = self.section_list[i]
-            temp_rule_set = FuzzyRuleSet(name=str(i) +"_OutputVarControllSection", section=i, rule_list=rule_list)
+            temp_rule_set = FuzzyRuleSet(name=str(i) + "_OutputVarControllSection", section=i, rule_list=rule_list)
             self.controller.add_rule_section(temp_rule_set)
         return self.controller
 
     def generate_fuzzy_logic_valuer(self):
         self.valuer = Controller(name="ValuerTest")
         rule_list = self.value_rule
-        temp_rule_set = FuzzyRuleSet(name = "ValueControllSection", section=1, rule_list=rule_list)
+        temp_rule_set = FuzzyRuleSet(name="ValueControllSection", section=1, rule_list=rule_list)
         self.valuer.add_rule_section(temp_rule_set)
         return self.valuer
 
@@ -128,6 +129,6 @@ if __name__ == '__main__':
     # print(pickle.dumps(fuzzy_controller))ddpgInitializaionTest
     # json.dumps(ddpgInitializaionTest, default=lambda obj: obj.__dict__)
 
-    print(json.dumps(fuzzy_controller, default=lambda obj: obj.__dict__), file = log_file)
+    print(json.dumps(fuzzy_controller, default=lambda obj: obj.__dict__, indent=4), file=log_file)
 
     # ddpgInitializaionTest.save_to_json()

@@ -10,6 +10,7 @@ class Environment(object):
         self.state_set = state_set
         self.action_dim = len(action_set)
         self.action_set = action_set
+        self.reward = None
 
     def set_action_set(self, action_set):
         self.action_set = action_set

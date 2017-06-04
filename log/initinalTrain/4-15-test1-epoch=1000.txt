@@ -906,6 +906,13 @@ Epoch = 904 Critic Cost = 0.02149 Actor Cost = 1.29065
 Epoch = 905 Critic Cost = 0.01774 Actor Cost = 1.29799
 Epoch = 906 Critic Cost = 0.02268 Actor Cost = 1.29523
 Epoch = 907 Critic Cost = 0.02222 Actor Cost = 1.29603
+    if rand_flag is False:
+        mf_l = LeftTriangleMF("low", c=0.25, sr=0.2)
+        mf_m = TriangleMF("middle", sl=0.25, c=0.5, sr=0.25)
+        mf_r = RightTriangleMF("high", c=0.75, sl=0.2)
+        mf_list = [mf_l, mf_m, mf_r]
+        temp = InputVariable(name, [0.0, 1.0], mf_list, value=0.5)
+    else:
 Epoch = 908 Critic Cost = 0.01913 Actor Cost = 1.30063
 Epoch = 909 Critic Cost = 0.02759 Actor Cost = 1.29731
 Epoch = 910 Critic Cost = 0.01888 Actor Cost = 1.29114

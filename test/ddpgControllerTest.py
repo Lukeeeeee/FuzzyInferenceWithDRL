@@ -1,7 +1,5 @@
 import gc
-import os
-import sys
-sys.path.append(os.getcwd() + '/src/')
+
 from src import *
 
 gc.enable()
@@ -9,6 +7,7 @@ gc.enable()
 ENV_NAME = 'InvertedPendulum-v1'
 EPISODES = 100000
 TEST = 10
+
 
 def main():
     env = Environment(name=ENV_NAME)
