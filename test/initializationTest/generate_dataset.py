@@ -1,11 +1,13 @@
 from __future__ import print_function
-from ddpgInitializationTest import *
+
 import json
+
+from ddpgInitializationTest import *
 
 if __name__ == '__main__':
     env = Environment(name="InitialTest", state_dim=100, action_dim=10)
 
-    testInitializer = ddpgInitializaionTest(state_dim=env.state_dim,
+    testInitializer = DDPGInitializaionTest(state_dim=env.state_dim,
                                             action_dim=env.action_dim)
     fuzzy_controller = testInitializer.generate_fuzzy_logic_controller()
     fuzzy_valuer = testInitializer.generate_fuzzy_logic_valuer()

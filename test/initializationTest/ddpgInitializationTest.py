@@ -23,10 +23,9 @@ try:
 except ImportError:
     import pickle
 
-sys.path.append(os.getcwd() + '/src/')
 
+class DDPGInitializaionTest(object):
 
-class ddpgInitializaionTest(object):
     def __init__(self, state_dim, action_dim):
         self.input_var_list = self.generate_input_var(input_dim=state_dim)
         self.output_var_list = self.generate_output_var(output_dim=action_dim)
@@ -55,7 +54,7 @@ class ddpgInitializaionTest(object):
         section_num = len(self.output_var_list)
         input_var_num = len(self.input_var_list)
         section_list = []
-        for i in range(section_num): # generate one section every iteration
+        for i in range(section_num):  # generate one section every iteration
             rule_list = []
             for j in range(rule_per_seciont_num):
                 temp1 = random.choice(self.input_var_list)
@@ -63,7 +62,7 @@ class ddpgInitializaionTest(object):
                 while temp2.name == temp1.name:
                     temp2 = random.choice(self.input_var_list)
                 temp3 = random.choice(self.input_var_list)
-                while(temp3.name == temp1.name or temp3.name == temp2.name):
+                while temp3.name == temp1.name or temp3.name == temp2.name:
                     temp3 = random.choice(self.input_var_list)
                 rule_list.append(construct_rule(temp1, temp2, temp3, self.output_var_list[i], section_id=i))
             section_list.append(rule_list)
@@ -74,12 +73,12 @@ class ddpgInitializaionTest(object):
             while temp2.name == temp1.name:
                 temp2 = random.choice(self.input_var_list)
             temp3 = random.choice(self.input_var_list)
-            while (temp3.name == temp1.name or temp3.name == temp2.name):
+            while temp3.name == temp1.name or temp3.name == temp2.name:
                 temp3 = random.choice(self.input_var_list)
             value_rule_list.append(construct_rule(temp1, temp2, temp3, self.value, section_id=1))
         return section_list, value_rule_list
 
-    def generate_fuzzy_logic_controller(self, input_dim = 100, output_dim = 10, rule_num = 100):
+    def generate_fuzzy_logic_controller(self, input_dim=100, output_dim=10, rule_num=100):
         self.section_num = output_dim
         self.controller = Controller(name = "ControllerTest")
         section_num = len(self.section_list)
@@ -105,7 +104,7 @@ if __name__ == '__main__':
     epoch = int(arguments["<epoch>"])
     mini_batch_size = int(arguments["<mini_batch>"])
 
-    testInitializer = ddpgInitializaionTest(state_dim=100,
+    testInitializer = DDPGInitializaionTest(state_dim=100,
                                             action_dim=10)
     env = Environment(name="InitialTest",
                       state_set=testInitializer.input_var_list,
@@ -122,11 +121,13 @@ if __name__ == '__main__':
                                       mini_batch_size=mini_batch_size)
     ddpgInitializer.train_DDPG(epoch=epoch)
 
-    #save something useful
+    # save something useful
     log_file = open("../../log/json/test.txt", "w")
 
-    #print(pickle.dumps(ddpgInitializaionTest))
-    #print(pickle.dumps(fuzzy_controller))
-    #json.dumps(ddpgInitializaionTest, default=lambda obj: obj.__dict__)
+    # print(pickle.dumps(ddpgInitializaionTest))
+    # print(pickle.dumps(fuzzy_controller))ddpgInitializaionTest
+    # json.dumps(ddpgInitializaionTest, default=lambda obj: obj.__dict__)
+
     print(json.dumps(fuzzy_controller, default=lambda obj: obj.__dict__), file = log_file)
-    #ddpgInitializaionTest.save_to_json()
+
+    # ddpgInitializaionTest.save_to_json()
