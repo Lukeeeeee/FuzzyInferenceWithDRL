@@ -12,11 +12,13 @@ Options:
 
 from __future__ import print_function
 
+# sys.path.append('/home/lukedong/PycharmProjects/GARIC/test/initializationTest')
+# sys.path.append('/home/lukedong/PycharmProjects/GARIC')
 import json
 
 from docopt import docopt
 
-from test.commonTest import *
+from test.common.commonTest import *
 
 try:
     import cPickle as pickle

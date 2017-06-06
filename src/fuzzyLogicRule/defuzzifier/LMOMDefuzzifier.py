@@ -1,4 +1,5 @@
-from src.fuzzyLogicRule.defuzzifier import Defuzzifier
+from src.fuzzyLogicRule.defuzzifier.defuzzifier import Defuzzifier
+
 
 class LMOMDefuzzifier(Defuzzifier):
     def __init__(self, name):
