@@ -1,0 +1,311 @@
+{
+  "variables": [],
+  "info": {
+    "name": "simplat",
+    "_postman_id": "8f802f0b-b53f-6d6a-3487-f601f025a053",
+    "description": "",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "http://localhost:8089/simplatform/observe/faction/1/12",
+      "request": {
+        "url": "http://localhost:8089/simplatform/observe/faction/1/12",
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:8089/simplatform/observe/faction/1/1",
+      "request": {
+        "url": "http://localhost:8089/simplatform/observe/faction/1/1",
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:8089/simplatform/observe/faction/1",
+      "request": {
+        "url": "http://localhost:8089/simplatform/observe/faction/1",
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:8089/simplatform/observe/faction/2",
+      "request": {
+        "url": "http://localhost:8089/simplatform/observe/faction/2",
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:8089/simplatform/observe/faction/12",
+      "request": {
+        "url": "http://localhost:8089/simplatform/observe/faction/12",
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:8089/simplatform/observe/faction/1111",
+      "request": {
+        "url": "http://localhost:8089/simplatform/observe/faction/1111",
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:8089/simplatform/observe/simulation/obstacles",
+      "request": {
+        "url": "http://localhost:8089/simplatform/observe/simulation/obstacles",
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:8089/simplatform/observe/simulation/rival/members?factionId=1&rivalMemberId=10",
+      "request": {
+        "url": "http://localhost:8089/simplatform/observe/simulation/rival/members?factionId=1&rivalMemberId=10",
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:8089/simplatform/observe/simulation/rival/members?factionId=1&rivalMemberId=2",
+      "request": {
+        "url": "http://localhost:8089/simplatform/observe/simulation/rival/members?factionId=1&rivalMemberId=2",
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:8089/simplatform/observe/simulation/rival/members?factionId=1&rivalMemberId=4",
+      "request": {
+        "url": "http://localhost:8089/simplatform/observe/simulation/rival/members?factionId=1&rivalMemberId=4",
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:8089/simplatform/observe/simulation/rival/members?factionId=1&rivalMemberId=5",
+      "request": {
+        "url": "http://localhost:8089/simplatform/observe/simulation/rival/members?factionId=1&rivalMemberId=5",
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:8089/simplatform/observe/simulation/rival/members?factionId=1&rivalMemberId=6",
+      "request": {
+        "url": "http://localhost:8089/simplatform/observe/simulation/rival/members?factionId=1&rivalMemberId=6",
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:8089/simplatform/observe/simulation/rival?factionId=1&rivalMemberId=6",
+      "request": {
+        "url": "http://localhost:8089/simplatform/observe/simulation/rival?factionId=1&rivalMemberId=6",
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:8089/simplatform/observe/simulation/rival?factionId=1",
+      "request": {
+        "url": "http://localhost:8089/simplatform/observe/simulation/rival?factionId=1",
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:8089/simplatform/observe/simulation/rival?factionId=2",
+      "request": {
+        "url": "http://localhost:8089/simplatform/observe/simulation/rival?factionId=2",
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:8089/simplatform/observe/simulation/timeLeft",
+      "request": {
+        "url": "http://localhost:8089/simplatform/observe/simulation/timeLeft",
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:8089/simplatform/observe/simulation/status",
+      "request": {
+        "url": "http://localhost:8089/simplatform/observe/simulation/status",
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:8089/simplatform/observe/factions/available",
+      "request": {
+        "url": "http://localhost:8089/simplatform/observe/factions/available",
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:8089/simplatform/observe/faction/2/5",
+      "request": {
+        "url": "http://localhost:8089/simplatform/observe/faction/2/5",
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:8089/simplatform/observe/simulation/simulation/obstacles",
+      "request": {
+        "url": "http://localhost:8089/simplatform/observe/simulation/simulation/obstacles",
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "description": ""
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:8089/simplatform/command",
+      "request": {
+        "url": "http://localhost:8089/simplatform/command",
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"contents\" : [ {\r\n    \"type\" : \"app/commandMessage\",\r\n    \"value\" : {\r\n      \"commandId\" : \"10000\",\r\n      \"commandType\" : \"attack\",\r\n      \"boatId\" : \"1\",\r\n      \"priority\" : \"normal\",\r\n      \"commandArgs\" : [ {\r\n        \"key\" : \"point\",\r\n        \"value\" : {\r\n          \"x\" : 100.471266622678,\r\n          \"y\" : 629.1680930170155\r\n        },\r\n        \"valueType\" : \"app/point\"\r\n      }, {\r\n        \"key\" : \"weaponType\",\r\n        \"value\" : \"laser\",\r\n        \"valueType\" : \"text/string\"\r\n      }, {\r\n        \"key\" : \"angle\",\r\n        \"value\" : 134.63986874133218,\r\n        \"valueType\" : \"text/double\"\r\n      }, {\r\n        \"key\" : \"salvo\",\r\n        \"value\" : 1,\r\n        \"valueType\" : \"text/integer\"\r\n      } ]\r\n    }\r\n  } ],\r\n  \"factionId\" : 1\r\n}"
+        },
+        "description": ""
+      },
+      "response": []
+    }
+  ]
+}
