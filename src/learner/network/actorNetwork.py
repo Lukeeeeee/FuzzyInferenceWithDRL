@@ -2,22 +2,25 @@ import math
 
 import tensorflow as tf
 
-from networkCommon import NetworkCommon as com
+from network import Network
+from src.learner.Common import NetworkCommon as com
 
 # Hyper Parameters
-LAYER1_SIZE = 400
-LAYER2_SIZE = 300
-LEARNING_RATE = 1e-4
-TAU = 0.001
-BATCH_SIZE = 64
-L2 = 0.01
+LAYER1_SIZE = com.ACTOR_LAYER1_SIZE
+LAYER2_SIZE = com.ACTOR_LAYER2_SIZE
+LEARNING_RATE = com.ACTOR_LEARNING_RATE
+TAU = com.ACTOR_TAU
+BATCH_SIZE = com.ACTOR_BATCH_SIZE
+L2 = com.ACTOR_L2
 
 
-class ActorNetwork(object):
+class ActorNetwork(Network):
     """docstring for ActorNetwork"""
 
     def __init__(self, sess, state_dim, action_dim):
-        self.sess = sess
+        super(ActorNetwork, self).__init__(sess)
+
+        # self.sess = sess
         self.state_dim = state_dim
         self.action_dim = action_dim
         # create actor network
@@ -32,8 +35,8 @@ class ActorNetwork(object):
 
         self.sess.run(tf.global_variables_initializer())
 
-        self.train_file_writer = com.return_file_writer(sess=self.sess, log_file_dir='../../log/')
-        self.test_file_writer = com.return_file_writer(sess=self.sess, log_file_dir='')
+        # self.train_file_writer = com.return_file_writer(sess=self.sess, log_file_dir='../../log/')
+        # self.test_file_writer = com.return_file_writer(sess=self.sess, log_file_dir='')
 
         self.update_target()
 

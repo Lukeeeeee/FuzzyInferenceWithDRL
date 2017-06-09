@@ -6,17 +6,18 @@
 import numpy as np
 import tensorflow as tf
 
-from actorNetwork import ActorNetwork
-from criticNetwork import CriticNetwork
+from Common import NetworkCommon as com
 from ouNoise import OUNoise
 from replayBuffer import ReplayBuffer
+from src.learner.network.actorNetwork import ActorNetwork
+from src.learner.network.criticNetwork import CriticNetwork
 
 # Hyper Parameters:
 
-REPLAY_BUFFER_SIZE = 1000000
-REPLAY_START_SIZE = 10000
-BATCH_SIZE = 100  # todo erase this one
-GAMMA = 0.99
+REPLAY_BUFFER_SIZE = com.REPLAY_BUFFER_SIZE
+REPLAY_START_SIZE = com.REPLAY_START_SIZE
+BATCH_SIZE = com.BATCH_SIZE  # todo erase this one
+GAMMA = com.GAMMA
 
 
 class DDPGController(object):

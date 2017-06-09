@@ -2,19 +2,24 @@ import math
 
 import tensorflow as tf
 
-LAYER1_SIZE = 400
-LAYER2_SIZE = 300
-LEARNING_RATE = 1e-3
-TAU = 0.001
-L2 = 0.01
+from network import Network
+from src.learner.Common import NetworkCommon as com
+
+LAYER1_SIZE = com.CRITIC_LAYER1_SIZE
+LAYER2_SIZE = com.CRITIC_LAYER2_SIZE
+LEARNING_RATE = com.CRITIC_LEARNING_RATE
+TAU = com.CRITIC_TAU
+L2 = com.CRITIC_L2
 
 
-class CriticNetwork(object):
+class CriticNetwork(Network):
     """docstring for CriticNetwork"""
 
     def __init__(self, sess, state_dim, action_dim):
+        super(CriticNetwork, self).__init__(sess)
+
         self.time_step = 0
-        self.sess = sess
+        # self.sess = sess
         # create q network
         self.state_input, \
         self.action_input, \
@@ -35,6 +40,7 @@ class CriticNetwork(object):
         self.sess.run(tf.global_variables_initializer())
 
         self.update_target()
+
 
     def create_training_method(self):
         # Define training optimizer
@@ -133,18 +139,17 @@ class CriticNetwork(object):
                                                             updates_collections=None, is_training=False, reuse=True,
                                                             scope=scope_bn, decay=0.9, epsilon=1e-5))
 
-
-'''
-	def load_network(self):
-		self.saver = tf.train.Saver()
-		checkpoint = tf.train.get_checkpoint_state("saved_critic_networks")
-		if checkpoint and checkpoint.model_checkpoint_path:
-			self.saver.restore(self.sess, checkpoint.model_checkpoint_path)
-			print "Successfully loaded:", checkpoint.model_checkpoint_path
-		else:
-			print "Could not find old network weights"
-
-	def save_network(self,time_step):
-		print 'save critic-network...',time_step
-		self.saver.save(self.sess, 'saved_critic_networks/' + 'critic-network', global_step = time_step)
-'''
+    '''
+        def load_network(self):
+            self.saver = tf.train.Saver()
+            checkpoint = tf.train.get_checkpoint_state("saved_critic_networks")
+            if checkpoint and checkpoint.model_checkpoint_path:
+                self.saver.restore(self.sess, checkpoint.model_checkpoint_path)
+                print "Successfully loaded:", checkpoint.model_checkpoint_path
+            else:
+                print "Could not find old network weights"
+    
+        def save_network(self,time_step):
+            print 'save critic-network...',time_step
+            self.saver.save(self.sess, 'saved_critic_networks/' + 'critic-network', global_step = time_step)
+    '''

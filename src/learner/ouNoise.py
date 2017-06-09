@@ -8,6 +8,7 @@
 import numpy as np
 import numpy.random as nr
 
+
 class OUNoise(object):
     """docstring for OUNoise"""
     def __init__(self,action_dimension,mu=0, theta=0.15, sigma=0.2):
