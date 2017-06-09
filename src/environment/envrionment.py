@@ -1,4 +1,4 @@
-import google.protobuf
+# import google.protobuf
 import requests
 
 
@@ -37,5 +37,6 @@ class Environment(object):
         return False
 
 if __name__ == '__main__':
-    ss = google.protobuf.__version__
+    # import tensorflow as tf
+    # ss = google.protobuf.__version__
     ss = requests.__version__

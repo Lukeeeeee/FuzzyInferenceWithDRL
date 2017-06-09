@@ -9,16 +9,13 @@ Options:
 
 """
 
-
 from __future__ import print_function
 
-# sys.path.append('/home/lukedong/PycharmProjects/GARIC/test/initializationTest')
-# sys.path.append('/home/lukedong/PycharmProjects/GARIC')
 import json
 
 from docopt import docopt
 
-from test.common.commonTest import *
+from test.commonTest.commonTest import *
 
 try:
     import cPickle as pickle
@@ -33,6 +30,9 @@ class DDPGInitializaionTest(object):
         self.output_var_list = self.generate_output_var(output_dim=action_dim)
         self.value = self.generate_value()
         self.section_list, self.value_rule = self.generate_section_list()
+        self.section_num = None
+        self.controller = None
+        self.valuer = None
 
     def generate_input_var(self, input_dim=100):
         input_var_list = []
@@ -54,7 +54,7 @@ class DDPGInitializaionTest(object):
 
     def generate_section_list(self, rule_per_seciont_num = 10):
         section_num = len(self.output_var_list)
-        input_var_num = len(self.input_var_list)
+        # input_var_num = len(self.input_var_list)
         section_list = []
         for i in range(section_num):  # generate one section every iteration
             rule_list = []
@@ -82,19 +82,18 @@ class DDPGInitializaionTest(object):
 
     def generate_fuzzy_logic_controller(self, input_dim=100, output_dim=10, rule_num=100):
         self.section_num = output_dim
-
         self.controller = Controller(name="ControllerTest")
         section_num = len(self.section_list)
         for i in range(section_num):
             rule_list = self.section_list[i]
-            temp_rule_set = FuzzyRuleSet(name=str(i) + "_OutputVarControllSection", section=i, rule_list=rule_list)
+            temp_rule_set = FuzzyRuleSet(name=str(i) + "_OutputVarControlSection", section=i, rule_list=rule_list)
             self.controller.add_rule_section(temp_rule_set)
         return self.controller
 
     def generate_fuzzy_logic_valuer(self):
         self.valuer = Controller(name="ValuerTest")
         rule_list = self.value_rule
-        temp_rule_set = FuzzyRuleSet(name="ValueControllSection", section=1, rule_list=rule_list)
+        temp_rule_set = FuzzyRuleSet(name="ValueControlSection", section=1, rule_list=rule_list)
         self.valuer.add_rule_section(temp_rule_set)
         return self.valuer
 
@@ -103,6 +102,7 @@ class DDPGInitializaionTest(object):
         pass
 
 if __name__ == '__main__':
+
     arguments = docopt(__doc__)
     epoch = int(arguments["<epoch>"])
     mini_batch_size = int(arguments["<mini_batch>"])
@@ -125,12 +125,12 @@ if __name__ == '__main__':
     ddpgInitializer.train_DDPG(epoch=epoch)
 
     # save something useful
-    log_file = open("../../log/json/test.txt", "w")
+    # log_file = open("../../log/json/test.txt", "w")
 
     # print(pickle.dumps(ddpgInitializaionTest))
     # print(pickle.dumps(fuzzy_controller))ddpgInitializaionTest
     # json.dumps(ddpgInitializaionTest, default=lambda obj: obj.__dict__)
 
-    print(json.dumps(fuzzy_controller, default=lambda obj: obj.__dict__, indent=4), file=log_file)
+    # print(json.dumps(fuzzy_controller, default=lambda obj: obj.__dict__), file=log_file)
 
     # ddpgInitializaionTest.save_to_json()

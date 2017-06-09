@@ -30,7 +30,7 @@ class DDPGController(object):
         self.state_dim = env.state_dim
         self.action_dim = env.action_dim
 
-        self.sess = tf.InteractiveSession()
+        self.sess = tf.InteractiveSession(config=tf.ConfigProto(log_device_placement=True))
 
         self.actor_network = ActorNetwork(self.sess, self.state_dim, self.action_dim)
         self.critic_network = CriticNetwork(self.sess, self.state_dim, self.action_dim)

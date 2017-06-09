@@ -2,6 +2,8 @@ import math
 
 import tensorflow as tf
 
+from networkCommon import NetworkCommon as com
+
 # Hyper Parameters
 LAYER1_SIZE = 400
 LAYER2_SIZE = 300
@@ -9,6 +11,7 @@ LEARNING_RATE = 1e-4
 TAU = 0.001
 BATCH_SIZE = 64
 L2 = 0.01
+
 
 class ActorNetwork(object):
     """docstring for ActorNetwork"""
@@ -29,6 +32,9 @@ class ActorNetwork(object):
 
         self.sess.run(tf.global_variables_initializer())
 
+        self.train_file_writer = com.return_file_writer(sess=self.sess, log_file_dir='../../log/')
+        self.test_file_writer = com.return_file_writer(sess=self.sess, log_file_dir='')
+
         self.update_target()
 
     # self.load_network()
@@ -43,6 +49,8 @@ class ActorNetwork(object):
         weight_decay = tf.add_n([L2 * tf.nn.l2_loss(var) for var in self.net])
         self.cost = tf.reduce_mean(tf.square(self.y_input - self.action_output)) + weight_decay
         self.initial_optimizer = tf.train.AdadeltaOptimizer(LEARNING_RATE).minimize(self.cost)
+
+        # self.create_variable_summary(self.cost)
 
     def create_network(self, state_dim, action_dim):
         layer1_size = LAYER1_SIZE
