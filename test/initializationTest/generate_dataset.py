@@ -1,7 +1,5 @@
 from __future__ import print_function
 
-import json
-
 from ddpgInitializationTest import *
 
 if __name__ == '__main__':
@@ -19,5 +17,5 @@ if __name__ == '__main__':
                                       fuzzy_logic_valuer=fuzzy_valuer,
                                       mini_batch_size=100)
 
-    dataset_log = open("../../log/dataset.json", "w")
+    dataset_log = open("../../data/ddpg_initial_data.json", "w")
     json.dump(ddpgInitializer.generate_training_sample_mini_batch(10), dataset_log)
