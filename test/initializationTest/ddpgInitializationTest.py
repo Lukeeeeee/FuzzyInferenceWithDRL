@@ -9,14 +9,13 @@ Options:
 
 """
 
-
 from __future__ import print_function
 
 import json
 
 from docopt import docopt
 
-from test.commonTest import *
+from test.commonTest.commonTest import *
 
 try:
     import cPickle as pickle
@@ -100,6 +99,7 @@ class DDPGInitializaionTest(object):
         pass
 
 if __name__ == '__main__':
+
     arguments = docopt(__doc__)
     epoch = int(arguments["<epoch>"])
     mini_batch_size = int(arguments["<mini_batch>"])

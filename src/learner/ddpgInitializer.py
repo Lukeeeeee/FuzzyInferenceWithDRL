@@ -1,5 +1,7 @@
+from __future__ import print_function
 import random
 from collections import deque
+import datetime
 
 
 class DDPGInitializer(object):
@@ -12,6 +14,7 @@ class DDPGInitializer(object):
         self.fuzzyLogicController = fuzzy_logic_controller
         self.fuzzyLogicValuer = fuzzy_logic_valuer
         self.mini_batch_size = mini_batch_size
+        self.log_file_dir = ""
 
     def generate_state_done_mini_batch(self, mini_batch_size):
         state_set = self.ddpgController.environment.state_set
@@ -67,10 +70,17 @@ class DDPGInitializer(object):
         return mini_batch
 
     def train_DDPG(self, epoch):
+        ti = datetime.datetime.now()
+        self.log_file_dir = ('../../log/initialTrain/' + str(ti.month) + '-' + str(ti.day) + '-' + str(ti.hour) +
+                             '-' + str(ti.minute) + '-' + str(ti.second) + "-epoch=" + str(epoch) + ".txt")
+        log_file = open(self.log_file_dir, mode="w")
+
         for i in range(epoch):
             mini_batch = self.generate_training_sample_mini_batch(self.mini_batch_size)
             critic_cost, actor_cost = self.ddpgController.initial_train(mini_batch=mini_batch)
-            print("Epoch = %d Critic Cost = %.5f Actor Cost = %.5f" % (i, critic_cost, actor_cost))
+            log_string = ("Epoch = %d Critic Cost = %.5f Actor Cost = %.5f" % (i, critic_cost, actor_cost))
+            print(log_string, file=log_file)
+            print(log_string)
 
 if __name__ == '__main__':
     # ddpgInitializer = DDPGInitializer()
