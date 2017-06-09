@@ -23,20 +23,13 @@ class LeftTriangleMF(MembershipFunction):
         if input_value <= self.c:
             return 1.0
         elif input_value <= self.c + self.sr:
-            return (1.0 - (input_value - self.c) / self.sr )
+            return 1.0 - (input_value - self.c) / self.sr
         else:
             return 0.0
 
     def inverse_calc(self, input_degree):
         if input_degree > 1.0:
-            # TODO Error of degre  value
+            # TODO Error of degree  value
             return 0.0
         else:
-            return (self.c - (input_degree - 1) * self.sr)
-
-
-
-
-
-
-
+            return self.c - (input_degree - 1) * self.sr

@@ -1,5 +1,6 @@
-
 from src.fuzzyLogicRule.membershipFunction.membershipFunction import MembershipFunction
+
+
 class RightTriangleMF(MembershipFunction):
     def __init__(self, name, c, sl):
         self.c = float(c)
@@ -22,11 +23,12 @@ class RightTriangleMF(MembershipFunction):
         if input_value >= self.c:
             return 1.0
         elif input_value >= self.c - self.sl:
-            return (1.0 - (self.c - input_value) / self.sl )
+            return 1.0 - (self.c - input_value) / self.sl
         else:
             return 0.0
+
     def inverse_calc(self, input_degree):
-        if (input_degree > 1.0):
+        if input_degree > 1.0:
             #todo error value of degree
             return 0.0
         else:

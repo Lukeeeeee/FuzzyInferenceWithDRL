@@ -1,10 +1,11 @@
 # Generate fuzzy rule
 
 import math
+
 from src.fuzzyLogicRule.ruleParser import RuleParser
 
+
 class FuzzyRule(object):
-	
 	def __init__(self,
 				 input_var_list,
 				 output_var_list,

@@ -9,9 +9,7 @@ class TriangleMF(MembershipFunction):
         self.sl = float(sl)
         self.sr = float(sr)
         self.c = float(c)
-        #super(TriangleMF, self).__init__ (name)
-        MembershipFunction.__init__(self, name)
-
+        super(TriangleMF, self).__init__(name)
 
     def set_parameters(self, sl = None, sr = None, c = None):
         if sl is None:
@@ -28,10 +26,10 @@ class TriangleMF(MembershipFunction):
         self.c = c
 
     def calc(self, value):
-        if value >= self.c and value <= self.c + self.sr:
-            return (1.0 - (value - self.c) / self.sr)
-        elif value < self.c and value >= self.c - self.sl:
-            return (1.0 - (self.c - value) / self.sl)
+        if self.c <= value <= self.c + self.sr:
+            return 1.0 - (value - self.c) / self.sr
+        elif self.c > value >= self.c - self.sl:
+            return 1.0 - (self.c - value) / self.sl
         else:
             return 0.0
         pass
@@ -41,4 +39,4 @@ class TriangleMF(MembershipFunction):
             #todo error of degre value
             return 0.0
         else:
-            return (self.c + (1 - input_degree) * (self.sr - self.sl) / 2.0)
+            return self.c + (1 - input_degree) * (self.sr - self.sl) / 2.0

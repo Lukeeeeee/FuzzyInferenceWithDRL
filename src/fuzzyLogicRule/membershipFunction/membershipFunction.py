@@ -1,7 +1,6 @@
-
-
-class MembershipFunction():
+class MembershipFunction(object):
 	"""docstring for MembershipFunction"""
+
 	def __init__(self, name):
 		self.name = name
 
