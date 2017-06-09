@@ -1,15 +1,15 @@
 from __future__ import absolute_import
 
 import os
-import sys
-import unittest
 import random
 import string
+import sys
 
 sys.path.append(os.getcwd() + '/src/')
 from src import *
 
-def construct_input(name, rand_flag = False):
+
+def construct_input(name, rand_flag=False):
     if rand_flag is False:
         mf_l = LeftTriangleMF("low", c=0.25, sr=0.2)
         mf_m = TriangleMF("middle", sl=0.25, c=0.5, sr=0.25)
@@ -35,7 +35,7 @@ def construct_output(name, rand_flag = False):
         mf_r = RightTriangleMF("high", c=0.75, sl=0.2)
         mf_list = [mf_l, mf_m, mf_r]
         defuzzifier = LMOMDefuzzifier(name)
-        temp = OutputVariable(name= name, mf= mf_list, range=[0.0, 1.0], defuzzifier= defuzzifier)
+        temp = OutputVariable(name=name, mf=mf_list, range=[0.0, 1.0], defuzzifier=defuzzifier)
     else:
         list = []
         for i in range(7):
@@ -46,7 +46,7 @@ def construct_output(name, rand_flag = False):
         mf_r = RightTriangleMF("high", c=list[6], sl=list[6] - list[4])
         mf_list = [mf_l, mf_m, mf_r]
         defuzzifier = LMOMDefuzzifier(name)
-        temp = OutputVariable(name= name, mf= mf_list, range=[0.0, 1.0], defuzzifier= defuzzifier)
+        temp = OutputVariable(name=name, mf=mf_list, range=[0.0, 1.0], defuzzifier=defuzzifier)
     return temp
 
 
@@ -56,7 +56,7 @@ def construct_rule(temp_in_1, temp_in_2, temp_in_3, temp_out, section_id):
     in_list = [temp_in_1, temp_in_2, temp_in_3]
     rand_label = []
     for i in range(4):
-        temp = random.randint(1,3)
+        temp = random.randint(1, 3)
         if temp == 1:
             rand_label.append("low")
         if temp == 2:
@@ -70,7 +70,7 @@ def construct_rule(temp_in_1, temp_in_2, temp_in_3, temp_out, section_id):
                                    )
     output = [temp_out]
     temp_rule = FuzzyRule(input_var_list=in_list, output_var_list=output, section=section_id, rule_str=rule_str,
-                            min_operation="min")
+                          min_operation="min")
     return temp_rule
 
 if __name__ == '__main__':

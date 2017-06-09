@@ -1,7 +1,8 @@
 from __future__ import print_function
+
+import datetime
 import random
 from collections import deque
-import datetime
 
 
 class DDPGInitializer(object):
