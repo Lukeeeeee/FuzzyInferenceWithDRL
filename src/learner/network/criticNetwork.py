@@ -41,7 +41,6 @@ class CriticNetwork(Network):
 
         self.update_target()
 
-
     def create_training_method(self):
         # Define training optimizer
         self.y_input = tf.placeholder("float", [None, 1])

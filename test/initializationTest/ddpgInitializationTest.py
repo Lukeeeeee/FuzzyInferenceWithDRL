@@ -25,7 +25,6 @@ except ImportError:
 
 
 class DDPGInitializaionTest(object):
-
     def __init__(self, state_dim, action_dim):
         self.input_var_list = self.generate_input_var(input_dim=state_dim)
         self.output_var_list = self.generate_output_var(output_dim=action_dim)
@@ -42,7 +41,7 @@ class DDPGInitializaionTest(object):
             input_var_list.append(var_i)
         return input_var_list
 
-    def generate_output_var(self, output_dim = 10):
+    def generate_output_var(self, output_dim=10):
         output_var_list = []
         for i in range(output_dim):
             var_i = construct_output(name="OutputVar_" + str(i), rand_flag=True)
@@ -53,7 +52,7 @@ class DDPGInitializaionTest(object):
         value = construct_output(name="Value", rand_flag=True)
         return value
 
-    def generate_section_list(self, rule_per_seciont_num = 10):
+    def generate_section_list(self, rule_per_seciont_num=10):
         section_num = len(self.output_var_list)
         # input_var_num = len(self.input_var_list)
         section_list = []
@@ -102,8 +101,8 @@ class DDPGInitializaionTest(object):
         json.dump(self, fp, default=lambda obj: obj.__dict__)
         pass
 
-if __name__ == '__main__':
 
+if __name__ == '__main__':
     arguments = docopt(__doc__)
     epoch = int(arguments["<epoch>"])
     mini_batch_size = int(arguments["<mini_batch>"])
@@ -127,5 +126,5 @@ if __name__ == '__main__':
 
     # ddpgInitializer.save_all_model(epoch=epoch)
 
-    ddpgInitializer.load_model(path=log.LOG_PATH + 'initialTrain/6-12-14-13-47/model/DDPGControllerModel.ckpt-10')
-    ddpgInitializer.train_DDPG(epoch=10)
+    ddpgInitializer.load_model(path=log.LOG_PATH + 'initialTrain/6-12-14-38-48/model/DDPGControllerModel.ckpt-100')
+    ddpgInitializer.train_DDPG(epoch=100)
