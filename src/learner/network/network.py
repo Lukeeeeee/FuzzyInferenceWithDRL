@@ -4,5 +4,3 @@ class Network(object):
 
     def train(self, y_batch, state_batch, action_batch):
         pass
-
-        # TODO ADD FILE WRITER HERE

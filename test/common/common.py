@@ -1,11 +1,8 @@
 from __future__ import absolute_import
 
-import os
 import random
 import string
-import sys
 
-sys.path.append(os.getcwd() + '/src/')
 from src import *
 
 
@@ -27,6 +24,7 @@ def construct_input(name, rand_flag=False):
         mf_list = [mf_l, mf_m, mf_r]
         temp = InputVariable(name, [0.0, 1.0], mf_list, value=0.5)
     return temp
+
 
 def construct_output(name, rand_flag = False):
     if rand_flag is False:
@@ -72,6 +70,7 @@ def construct_rule(temp_in_1, temp_in_2, temp_in_3, temp_out, section_id):
     temp_rule = FuzzyRule(input_var_list=in_list, output_var_list=output, section=section_id, rule_str=rule_str,
                           min_operation="min")
     return temp_rule
+
 
 if __name__ == '__main__':
     pass

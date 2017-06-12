@@ -15,7 +15,8 @@ import json
 
 from docopt import docopt
 
-from test.commonTest.commonTest import *
+import log
+from test.common.common import *
 
 try:
     import cPickle as pickle
@@ -122,15 +123,9 @@ if __name__ == '__main__':
                                       fuzzy_logic_controller=fuzzy_controller,
                                       fuzzy_logic_valuer=fuzzy_valuer,
                                       mini_batch_size=mini_batch_size)
-    ddpgInitializer.train_DDPG(epoch=epoch)
+    # ddpgInitializer.train_DDPG(epoch=epoch)
 
-    # save something useful
-    # log_file = open("../../log/json/test.txt", "w")
+    # ddpgInitializer.save_all_model(epoch=epoch)
 
-    # print(pickle.dumps(ddpgInitializaionTest))
-    # print(pickle.dumps(fuzzy_controller))ddpgInitializaionTest
-    # json.dumps(ddpgInitializaionTest, default=lambda obj: obj.__dict__)
-
-    # print(json.dumps(fuzzy_controller, default=lambda obj: obj.__dict__), file=log_file)
-
-    # ddpgInitializaionTest.save_to_json()
+    ddpgInitializer.load_model(path=log.LOG_PATH + 'initialTrain/6-12-14-13-47/model/DDPGControllerModel.ckpt-10')
+    ddpgInitializer.train_DDPG(epoch=10)

@@ -6,6 +6,8 @@ import os
 import random
 from collections import deque
 
+import log
+
 
 class DDPGInitializer(object):
     def __init__(self,
@@ -18,11 +20,15 @@ class DDPGInitializer(object):
         self.fuzzyLogicValuer = fuzzy_logic_valuer
         self.mini_batch_size = mini_batch_size
         ti = datetime.datetime.now()
-        self.log_file_dir = ('../../log/initialTrain/' + str(ti.month) + '-' + str(ti.day) + '-' + str(ti.hour) +
+        self.log_file_dir = (log.LOG_PATH + 'initialTrain/' + str(ti.month) + '-' + str(ti.day) + '-' + str(ti.hour) +
                              '-' + str(ti.minute) + '-' + str(ti.second) + '/')
         if not os.path.exists(self.log_file_dir):
             os.mkdir(self.log_file_dir)
 
+        self.model_file_dir = self.log_file_dir + 'model/'
+
+        if not os.path.exists(self.model_file_dir):
+            os.mkdir(self.model_file_dir)
 
     def generate_state_done_mini_batch(self, mini_batch_size):
         state_set = self.ddpgController.environment.state_set
@@ -77,6 +83,12 @@ class DDPGInitializer(object):
             mini_batch.append(sample)
         return mini_batch
 
+    def save_all_model(self, epoch):
+        self.ddpgController.save_model(path=self.model_file_dir, check_point=epoch)
+
+    def load_model(self, path):
+        self.ddpgController.load_model(path=path)
+
     def train_DDPG(self, epoch):
 
         log_dict_list = []
@@ -94,4 +106,6 @@ class DDPGInitializer(object):
 
 if __name__ == '__main__':
     # ddpgInitializer = DDPGInitializer()
+    # dir_path = os.path.dirname(os.path.realpath(__file__))
+    print(log.LOG_PATH)
     pass

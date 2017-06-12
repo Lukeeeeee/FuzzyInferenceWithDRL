@@ -42,6 +42,8 @@ class DDPGController(object):
         # Initialize a random process the Ornstein-Uhlenbeck process for action exploration
         self.exploration_noise = OUNoise(self.action_dim)
 
+        self.model_saver = tf.saver = tf.train.Saver()
+
     def train(self):
         # print "train step",self.time_step
         # Sample a random minibatch of N transitions from replay buffer
@@ -134,6 +136,15 @@ class DDPGController(object):
         self.actor_network.update_target()
         self.critic_network.update_target()
         return critic_cost, action_cost
+
+    def save_model(self, path, check_point):
+        self.model_saver.save(self.sess, path + 'DDPGControllerModel.ckpt', global_step=check_point)
+        print("Model saved at " + path + 'model.ckpt')
+
+    def load_model(self, path):
+        self.model_saver.restore(self.sess, path)
+        print("Model loaded at " + path)
+        pass
 
 if __name__ == '__main__':
     pass
