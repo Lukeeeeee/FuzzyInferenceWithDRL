@@ -3,7 +3,7 @@ import math
 import tensorflow as tf
 
 from network import Network
-from src.learner.Common import NetworkCommon as com
+from src.learner.common import NetworkCommon as com
 
 LAYER1_SIZE = com.CRITIC_LAYER1_SIZE
 LAYER2_SIZE = com.CRITIC_LAYER2_SIZE

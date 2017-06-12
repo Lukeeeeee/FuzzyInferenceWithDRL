@@ -6,7 +6,7 @@
 import numpy as np
 import tensorflow as tf
 
-from Common import NetworkCommon as com
+from common import NetworkCommon as com
 from ouNoise import OUNoise
 from replayBuffer import ReplayBuffer
 from src.learner.network.actorNetwork import ActorNetwork

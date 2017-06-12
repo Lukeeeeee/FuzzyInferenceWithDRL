@@ -3,7 +3,7 @@ import math
 import tensorflow as tf
 
 from network import Network
-from src.learner.Common import NetworkCommon as com
+from src.learner.common import NetworkCommon as com
 
 # Hyper Parameters
 LAYER1_SIZE = com.ACTOR_LAYER1_SIZE
