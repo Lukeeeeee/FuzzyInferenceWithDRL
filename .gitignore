@@ -96,4 +96,4 @@ ENV/
 # PyCharm
 
 /.idea
-/log/initialTrain/*-*-*-*-*/
+/log/initialTrain/*-*
