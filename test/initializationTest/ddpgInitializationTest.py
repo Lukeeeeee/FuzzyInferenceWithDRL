@@ -11,11 +11,8 @@ Options:
 
 from __future__ import print_function
 
-import json
-
 from docopt import docopt
 
-import log
 from test.common.common import *
 
 try:
@@ -80,7 +77,7 @@ class DDPGInitializaionTest(object):
             value_rule_list.append(construct_rule(temp1, temp2, temp3, self.value, section_id=1))
         return section_list, value_rule_list
 
-    def generate_fuzzy_logic_controller(self, input_dim=100, output_dim=10, rule_num=100):
+    def generate_fuzzy_logic_controller(self, output_dim=10):
         self.section_num = output_dim
         self.controller = Controller(name="ControllerTest")
         section_num = len(self.section_list)
@@ -96,10 +93,6 @@ class DDPGInitializaionTest(object):
         temp_rule_set = FuzzyRuleSet(name="ValueControlSection", section=1, rule_list=rule_list)
         self.valuer.add_rule_section(temp_rule_set)
         return self.valuer
-
-    def save_to_json(self, fp):
-        json.dump(self, fp, default=lambda obj: obj.__dict__)
-        pass
 
 
 if __name__ == '__main__':
@@ -122,9 +115,9 @@ if __name__ == '__main__':
                                       fuzzy_logic_controller=fuzzy_controller,
                                       fuzzy_logic_valuer=fuzzy_valuer,
                                       mini_batch_size=mini_batch_size)
-    # ddpgInitializer.train_DDPG(epoch=epoch)
+    ddpgInitializer.train_DDPG(epoch=epoch)
 
-    # ddpgInitializer.save_all_model(epoch=epoch)
+    ddpgInitializer.save_all_model(epoch=epoch)
 
-    ddpgInitializer.load_model(path=log.LOG_PATH + 'initialTrain/6-12-14-38-48/model/DDPGControllerModel.ckpt-100')
-    ddpgInitializer.train_DDPG(epoch=100)
+    # ddpgInitializer.load_model(path=log.LOG_PATH + 'initialTrain/6-12-14-38-48/model/DDPGControllerModel.ckpt-100')
+    # ddpgInitializer.train_DDPG(epoch=100)
