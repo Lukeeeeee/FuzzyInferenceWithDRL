@@ -7,9 +7,6 @@ class Network(object):
     def __init__(self, sess):
         self.sess = sess
 
-    # def train(self, y_batch, state_batch, action_batch):
-    #     pass
-
     # f fan-in size
     def variable(self, shape, f):
         return tf.Variable(tf.random_uniform(shape, -1 / math.sqrt(f), 1 / math.sqrt(f)))
