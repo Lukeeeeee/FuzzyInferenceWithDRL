@@ -1,5 +1,6 @@
-from collections import deque
 import random
+from collections import deque
+
 
 class ReplayBuffer(object):
 

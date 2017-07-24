@@ -17,6 +17,7 @@ class Variable(object):
     @property
     def value(self):
         return self._value
+
     @value.setter
     def value(self, new_val):
         self._value = new_val
@@ -24,6 +25,7 @@ class Variable(object):
     @property
     def degree(self):
         return self._degree
+
     @degree.setter
     def degree(self, new_degree):
         self._degree = new_degree

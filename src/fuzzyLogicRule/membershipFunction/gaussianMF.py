@@ -1,4 +1,4 @@
-from src.fuzzyLogicRule.membershipFunction.membershipFunction import  MembershipFunction
+from src.fuzzyLogicRule.membershipFunction.membershipFunction import MembershipFunction
 
 
 class GaussianMF(MembershipFunction):
@@ -8,5 +8,6 @@ class GaussianMF(MembershipFunction):
         self.stander_deviation = standerd_deviation
 
     def calc(self, value):
-        return 0.0 #Todo Gaussian mf
+        return 0.0
+        # Todo Gaussian mf
         pass

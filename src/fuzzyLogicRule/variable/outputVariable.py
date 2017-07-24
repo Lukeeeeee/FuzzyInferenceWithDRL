@@ -4,8 +4,7 @@ from src.fuzzyLogicRule.variable.variable import Variable
 class OutputVariable(Variable):
     """docstring for OutputVariable"""
 
-    def __init__(self, name, mf, range, defuzzifier
-                 ):
+    def __init__(self, name, mf, range, defuzzifier):
         super(OutputVariable, self).__init__(name, mf, range)
         self.defuzzifier = defuzzifier
         self.value = {}

@@ -1,5 +1,3 @@
-import math
-
 import tensorflow as tf
 
 from network import Network
@@ -107,12 +105,11 @@ class ActorNetwork(Network):
         self.sess.run(self.target_update)
 
     def train(self, q_gradient_batch, state_batch):
-        _, cost = self.sess.run([self.optimizer, self.cost], feed_dict={
+        self.sess.run([self.optimizer], feed_dict={
             self.q_gradient_input: q_gradient_batch,
             self.state_input: state_batch,
             self.is_training: True
         })
-        return cost
 
     def initial_train(self, action_label_batch, state_batch):
         _, cost = self.sess.run([self.initial_optimizer, self.cost], feed_dict={
@@ -139,34 +136,3 @@ class ActorNetwork(Network):
             self.target_state_input: state_batch,
             self.target_is_training: True
         })
-
-    # f fan-in size
-    def variable(self, shape, f):
-        return tf.Variable(tf.random_uniform(shape, -1 / math.sqrt(f), 1 / math.sqrt(f)))
-
-    def batch_norm_layer(self, x, training_phase, scope_bn, activation=None):
-        return tf.cond(training_phase,
-                       lambda: tf.contrib.layers.batch_norm(x, activation_fn=activation, center=True, scale=True,
-                                                            updates_collections=None, is_training=True, reuse=None,
-                                                            scope=scope_bn, decay=0.9, epsilon=1e-5),
-                       lambda: tf.contrib.layers.batch_norm(x, activation_fn=activation, center=True, scale=True,
-                                                            updates_collections=None, is_training=False, reuse=True,
-                                                            scope=scope_bn, decay=0.9, epsilon=1e-5))
-
-
-'''
-	def load_network(self):
-		self.saver = tf.train.Saver()
-		checkpoint = tf.train.get_checkpoint_state("saved_actor_networks")
-		if checkpoint and checkpoint.model_checkpoint_path:
-			self.saver.restore(self.sess, checkpoint.model_checkpoint_path)
-			print "Successfully loaded:", checkpoint.model_checkpoint_path
-		else:
-			print "Could not find old network weights"
-	def save_network(self,time_step):
-		print 'save actor-network...',time_step
-		self.saver.save(self.sess, 'saved_actor_networks/' + 'actor-network', global_step = time_step)
-
-'''
-
-

@@ -10,12 +10,12 @@ TEST = 10
 
 
 def main():
-    env = Environment(name=ENV_NAME)
+    env = Environment(name=ENV_NAME, state_set=[], action_set=[])
     agent = DDPGController(env)
 
     for episode in range(EPISODES):
         state = env.reset()
-        for step in range(env.timestep_limit):
+        for step in range(env.time_step_limit):
             action = agent.noise_action(state)
             next_state, reward, done = env.step(action)
             agent.perceive(state, action, reward, next_state, done)
@@ -26,7 +26,7 @@ def main():
             total_reward = 0.0
             for i in range(TEST):
                 stat = env.reset()
-                for j in range(env.timestep_limit):
+                for j in range(env.time_step_limit):
                     action = agent.action(state)
                     state, reward, done = env.step(action)
                     total_reward += reward

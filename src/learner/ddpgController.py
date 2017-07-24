@@ -42,7 +42,7 @@ class DDPGController(object):
         # Initialize a random process the Ornstein-Uhlenbeck process for action exploration
         self.exploration_noise = OUNoise(self.action_dim)
 
-        self.model_saver = tf.saver = tf.train.Saver()
+        self.model_saver = tf.train.Saver()
 
     def train(self):
         # print "train step",self.time_step

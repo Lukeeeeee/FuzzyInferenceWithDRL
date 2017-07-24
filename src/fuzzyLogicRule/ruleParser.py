@@ -1,7 +1,5 @@
 
 class RuleParser(object):
-    def __int__(self):
-        pass
 
     def parse_if_then_rule(self, rule_str):
         word_list = rule_str.split(" ")
