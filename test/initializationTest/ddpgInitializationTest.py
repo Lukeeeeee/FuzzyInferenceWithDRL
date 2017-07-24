@@ -15,7 +15,6 @@ import json
 
 from docopt import docopt
 
-import log
 from test.common.common import *
 
 try:
@@ -122,9 +121,12 @@ if __name__ == '__main__':
                                       fuzzy_logic_controller=fuzzy_controller,
                                       fuzzy_logic_valuer=fuzzy_valuer,
                                       mini_batch_size=mini_batch_size)
-    # ddpgInitializer.train_DDPG(epoch=epoch)
+    ddpgInitializer.train_DDPG(epoch=epoch)
 
-    # ddpgInitializer.save_all_model(epoch=epoch)
+    ddpgInitializer.save_all_model(epoch=epoch)
 
-    ddpgInitializer.load_model(path=log.LOG_PATH + 'initialTrain/6-12-14-38-48/model/DDPGControllerModel.ckpt-100')
-    ddpgInitializer.train_DDPG(epoch=100)
+    # ddpgInitializer.load_model(path=log.LOG_PATH + 'initialTrain/6-12-14-38-48/model/DDPGControllerModel.ckpt-100')
+    # ddpgInitializer.train_DDPG(epoch=100)
+    log_file = open("test.txt", "w")
+
+    print(json.dumps(fuzzy_controller, default=lambda obj: obj.__dict__, indent=4), file=log_file)
