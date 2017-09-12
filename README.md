@@ -1,7 +1,6 @@
-#### ddpg reinforcement learning controller
-### to-do list
-1. ~~Initialization test of ddpg controller~~
-2. Finish environment coding
-3. Error handle of controller
-4. Add more membership function and defuzzy method
+# A Deep Reinforcement Learning Framework based on DDPG and Fuzzy Logic Rule.
 
+Step1: Using Fuzzy Logic Rule to pre-train the neural network in DDPG.
+Step2: Update itself by reinforcement learning.
+
+This framework can be extended to any different environments and deep reinforcement learning algorithms.
